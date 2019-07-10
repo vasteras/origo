@@ -34,6 +34,7 @@ let hasSnap;
 let select;
 let modify;
 let snap;
+let singleFeature;
 
 function isActive() {
   if (modify === undefined || select === undefined) {
@@ -138,13 +139,62 @@ function onModifyEnd(evt) {
   });
 }
 
+function deleteFeatureInLayer(feature, source, layerName) {
+  saveFeature({
+    feature,
+    layerName,
+    action: 'delete'
+  });
+  source.removeFeature(feature);
+}
+
 function onDrawEnd(evt) {
   const feature = evt.feature;
   const layer = viewer.getLayer(currentLayer);
   const defaultAttributes = getDefaultValues(layer.get('attributes'));
   feature.setProperties(defaultAttributes);
   feature.setId(generateUUID());
+
   editSource.addFeature(feature);
+
+  if (singleFeature) {
+    const layerSource = layer.getSource();
+    const oldFeature = layerSource.getFeatures()[0];
+    if (oldFeature.getId() !== feature.getId()) {
+      deleteFeatureInLayer(oldFeature, layerSource, currentLayer);
+    }
+  }
+
+  /* const layerSource = layer.getSource();
+  const oldFeature = layerSource.getFeatures()[0];
+  const latestFeature = editSource.getFeatures()[editSource.getFeatures().length - 1];
+  console.log('old feature: ', oldFeature.getId()); // from layer source
+  console.log('latest feature: ', latestFeature.getId()); // from edit source
+  // console.log('feature eq latest: ', feature.getId() === latestFeature.getId());
+  if (oldFeature.getId() === latestFeature.getId()) {
+    console.log('create new feature');
+  } else {
+    console.log('create latest');
+    deleteFeatureInLayer(oldFeature, layerSource, currentLayer);
+    console.log('remove old feature');
+  } */
+
+  // deleteFeatureInLayer(oldFeature, layerSource, currentLayer);
+
+  /*  if (singleFeature) {
+    console.log('single feature: ', editSource.getFeatures());
+    if (editSource.getFeatures().length === 0) {
+      editSource.addFeature(feature);
+    } else {
+      // const firstFeature = editSource.getFeatures()[0];
+      // editSource.removeFeature(firstFeature);
+      console.log('else: ', editSource.getFeatures());
+    }
+    console.log('edit feautres: ', editSource.getFeatures());
+  } else {
+    editSource.addFeature(feature);
+  } */
+
   setActive();
   hasDraw = false;
   saveFeature({
@@ -340,6 +390,7 @@ function onAttributesSave(feature, attrs) {
       const containerClass = `.${attribute.elId.slice(1)}`;
 
       // If hidden element it should be excluded
+      // TODO: why is it doing in the config?
       if ($(containerClass).hasClass('o-hidden') === false) {
         // Check if checkbox. If checkbox read state.
         if ($(attribute.elId).attr('type') === 'checkbox') {
@@ -347,6 +398,11 @@ function onAttributesSave(feature, attrs) {
         } else { // Read value from input text, textarea or select
           editEl[attribute.name] = $(attribute.elId).val();
         }
+      } else {
+        // TODO::
+        // console.log(attribute.name, $(attribute.elId).val());
+        editEl[attribute.name] = $(attribute.elId).val();
+        // console.log(editEl);
       }
       // Check if file. If file, read and trigger resize
       if ($(attribute.elId).attr('type') === 'file') {
@@ -426,7 +482,21 @@ function addImageListener() {
 
   return fn;
 }
-
+// TODO: MAKE GENERAL GET model to check connect.
+let mapOptions;
+function changeEventHandler(event) {
+  const layers = mapOptions.layers;
+  const wPKT = layers.filter(l => l.name === 'webb_pkt')[0];
+  const attr = wPKT.attributes;
+  const dropdownConnect = attr.filter(a => a.type === 'dropdownConnect')[0];
+  const model = dropdownConnect.options;
+  const value = event.target.value;
+  const obj = model.filter(o => o.name === value.trim())[0];
+  const con = obj.connect;
+  const CATEGORYID = document.getElementById('input-CATEGORYID');
+  CATEGORYID.value = con;
+}
+const objValueStore = [];
 function editAttributes(feat) {
   let feature = feat;
   let attributeObjects;
@@ -447,7 +517,15 @@ function editAttributes(feat) {
       attributeObjects = attributes.map((attributeObject) => {
         const obj = {};
         $.extend(obj, attributeObject);
-        obj.val = feature.get(obj.name) || '';
+        // TODO: Stores initial value
+        if (objValueStore.filter(o => o.name === obj.name)[0] === undefined) {
+          obj.val = feature.get(obj.name) !== undefined ? feature.get(obj.name) : '';
+          if (obj.val !== '') {
+            objValueStore.push({ value: obj.val, name: obj.name });
+          }
+        } else {
+          obj.val = objValueStore.filter(o => o.name === obj.name)[0].value;
+        }
         if ('constraint' in obj) {
           const constraintProps = obj.constraint.split(':');
           if (constraintProps.length === 3) {
@@ -466,11 +544,23 @@ function editAttributes(feat) {
           obj.elId = `#input-${obj.name}`;
           obj.addListener = addImageListener();
         } else {
-          obj.isVisible = true;
+          obj.isVisible = obj.isVisible === undefined ? true : obj.isVisible;
           obj.elId = `#input-${obj.name}`;
         }
-
+        const urlParams = viewer.getUrlParams();
+        // TODO: const urlAttribute = urlParams.attribute;
+        if (obj.name === 'PAGEID' && obj.val === '') {
+          const urlValue = urlParams.value;
+          obj.val = urlValue;
+        }
+        if (obj.name === 'DELETED' && obj.val === '') {
+          obj.val = 0;
+        }
+        if (obj.name === 'CATEGORYID' && obj.val === '') {
+          obj.val = 1;
+        }
         obj.formElement = editForm(obj);
+        // console.log(obj);
         return obj;
       });
     }
@@ -489,7 +579,10 @@ function editAttributes(feat) {
         obj.addListener(obj);
       }
     });
-
+    // TODO: MAKE GENERAL GET model to check connect.
+    document.querySelector('select[id="input-CATEGORY"]').onchange = changeEventHandler;
+    mapOptions = viewer.getMapOptions();
+    // console.log('on attribute save for feature: ', feature);
     onAttributesSave(feature, attributeObjects);
   }
 }
@@ -543,6 +636,7 @@ export default function editHandler(options) {
 
   autoSave = options.autoSave;
   autoForm = options.autoForm;
+  singleFeature = options.singleFeature;
   $(document).on('toggleEdit', onToggleEdit);
   $(document).on('changeEdit', onChangeEdit);
   $(document).on('editorShapes', onChangeShape);

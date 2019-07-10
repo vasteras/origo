@@ -1,4 +1,5 @@
 import about from '../src/controls/about';
+import animation from '../src/controls/animation';
 import attribution from '../src/controls/attribution';
 import draganddrop from '../src/controls/draganddrop';
 import editor from '../src/controls/editor';
@@ -22,6 +23,7 @@ import zoom from '../src/controls/zoom';
 
 const controls = {
   about,
+  animation,
   attribution,
   draganddrop,
   editor,

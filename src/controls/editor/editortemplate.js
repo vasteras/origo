@@ -30,7 +30,7 @@ export default `<div id="o-editor-toolbar" class="o-editor-toolbar o-toolbar o-t
           <use xlink:href="#ic_save_24px"></use>
       </svg>
     </button>
-    <button id="o-editor-close" class="o-button-lg" type="button" name="button">
+    <button id="o-editor-close" class="o-hidden o-button-lg" type="button" name="button">
         <svg class="o-icon-24">
             <use xlink:href="#ic_close_24px"></use>
         </svg>

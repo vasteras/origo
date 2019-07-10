@@ -4,7 +4,7 @@ import ClusterSource from 'ol/source/Cluster';
 import style from '../style';
 import viewer from '../viewer';
 
-export default function vector(opt, src) {
+const vector = function vector(opt, src) {
   const options = opt;
   const source = src;
   const distance = 60;
@@ -30,11 +30,13 @@ export default function vector(opt, src) {
       const clusterDistance = options.clusterOptions.clusterDistance || source.clusterOptions.clusterDistance || viewer.getClusterOptions().clusterDistance || distance;
       const clusterMaxZoom = options.clusterOptions.clusterMaxZoom || source.clusterOptions.clusterMaxZoom || viewer.getClusterOptions().clusterMaxZoom || viewer.getResolutions().length - 1;
       const clusterInitialDistance = viewer.getSettings().zoom > clusterMaxZoom ? 0 : clusterDistance;
+
       options.source = new ClusterSource({
         attributions: options.attribution,
         source,
         distance: clusterInitialDistance
       });
+
       options.source.setProperties({
         clusterDistance,
         clusterMaxZoom
@@ -77,4 +79,6 @@ export default function vector(opt, src) {
     }
   }
   return vectorLayer;
-}
+};
+
+export default vector;

@@ -47,7 +47,7 @@ function callback(evt) {
       clone,
       selectionStyles[items[currentItem].feature.getGeometry().getType()]
     );
-    const layer = viewer.getLayersByProperty('name', items[currentItem].name)[0];
+    const layer = viewer.getLayersByProperty('name', items[currentItem].name)[0] ? viewer.getLayersByProperty('name', items[currentItem].name)[0] : viewer.getLayersByProperty('title', items[currentItem].title)[0];
     const featureinfoTitle = layer.getProperties().featureinfoTitle;
     let title;
     if (featureinfoTitle) {

@@ -88,7 +88,6 @@ function getGetFeatureInfoRequest(layer, coordinate) {
   const layerType = layer.get('type');
   const obj = {};
   obj.layer = layer.get('name');
-
   switch (layerType) {
     case 'WMTS':
       if (layer.get('featureinfoLayer')) {

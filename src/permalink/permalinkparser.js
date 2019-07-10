@@ -54,5 +54,20 @@ export default {
   },
   map(mapStr) {
     return mapStr;
+  },
+  filter(layerName) {
+    return layerName;
+  },
+  attribute(attribute) {
+    return attribute;
+  },
+  value(value) {
+    return value;
+  },
+  x(x) {
+    return x;
+  },
+  y(y) {
+    return y;
   }
 };

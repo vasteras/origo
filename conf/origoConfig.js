@@ -21,9 +21,6 @@ export default {
   },
   {
     name: 'attribution'
-  },
-  {
-    name: 'fullscreen'
   }
   ]
 };

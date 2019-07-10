@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './origo.js'
+    'babel-polyfill', './origo.js'
   ],
   module: {
     rules: [

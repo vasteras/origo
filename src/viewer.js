@@ -6,6 +6,9 @@ import Projection from 'ol/proj/Projection';
 import { register } from 'ol/proj/proj4';
 import Feature from 'ol/Feature';
 import geom from 'ol/geom/Geometry';
+import PointerEvent from 'ol/pointer/PointerEvent';
+import MapBrowserPointerEvent from 'ol/MapBrowserPointerEvent';
+import Polygon from 'ol/geom/Polygon';
 import $ from 'jquery';
 import template from './templates/viewertemplate';
 import elQuery from './utils/elquery';
@@ -15,6 +18,8 @@ import maputils from './maputils';
 import getattributes from './getattributes';
 import style from './style';
 import layerCreator from './layercreator';
+import dispatcher from './controls/editor/editdispatcher';
+import animation from './controls/animation';
 
 let map;
 const settings = {
@@ -35,10 +40,11 @@ const settings = {
 };
 let urlParams;
 let pageSettings;
+let mapOptions;
 const pageTemplate = {};
 
-function render(el, mapOptions) {
-  pageSettings = mapOptions.pageSettings;
+function render(el, options) {
+  pageSettings = options.pageSettings;
   pageTemplate.mapClass = 'o-map';
 
   if (pageSettings) {
@@ -150,6 +156,10 @@ function getTileSize() {
 
 function getUrl() {
   return settings.url;
+}
+
+function getUrlParams() {
+  return urlParams;
 }
 
 function getStyleSettings() {
@@ -276,7 +286,9 @@ function getProjection() {
 function getMapSource() {
   return settings.source;
 }
-
+function getMapOptions() {
+  return mapOptions;
+}
 function getControlNames() {
   return settings.controls.map(obj => obj.name);
 }
@@ -357,7 +369,8 @@ function removeOverlays(overlays) {
   }
 }
 
-function init(el, mapOptions) {
+function init(el, options) {
+  mapOptions = options;
   render(el, mapOptions);
 
   // Read and set projection
@@ -455,9 +468,197 @@ function init(el, mapOptions) {
   if (urlParams.pin) {
     settings.featureinfoOptions.savedPin = urlParams.pin;
   } else if (urlParams.selection) {
-    // This needs further development for proper handling in permalink
     settings.featureinfoOptions.savedSelection = new Feature({
       geometry: new geom[urlParams.selection.geometryType](urlParams.selection.coordinates)
+    });
+  }
+  const titles = [
+    'Badplats',
+    'Bibliotek',
+    'Boende för missbrukare',
+    'Boende för psykiskt funktionsnedsatta',
+    'Cykelpumpar',
+    'Dagverksmahet för personer med demenssjukdom',
+    'Familjecentrum',
+    'Fotbollsplan',
+    'Fritidsgård',
+    'Fritidshem',
+    'Förskola',
+    'Förskoleklass',
+    'Grundskola',
+    'Grundsärskola',
+    'Gruppbostad',
+    'Gymnasieskola',
+    'Gymnasiesärskola',
+    'Hall-idrottsanläggning',
+    'Högskola och yrkeshögskola',
+    'Korttidsvistelse utanför det egna hemmet',
+    'Kulturskolan',
+    'Motionsspår',
+    'Museum',
+    'Mötesplats för anhöriga',
+    'Mötesplats-omsorg',
+    'Park',
+    'Pedagogisk omsorg',
+    'Servicebostad',
+    'Sfi',
+    'Simhall-badhus',
+    'Träffpunkt',
+    'Vuxenutbildning',
+    'Västerås utvecklas',
+    'Äldreboende',
+    'Ålderdomshem',
+    'Öppen fritidsverksamhet',
+    'Öppen förskola',
+    'Övrigt'
+  ];
+  const makeClick = (coords) => {
+    const coord = coords[0];
+    const pixel = map.getPixelFromCoordinate(coord);
+    const offsetX = parseFloat(urlParams.x, 10);
+    const offsetY = parseFloat(urlParams.y, 10);
+    const click = 'click';
+    const clickEvent = new PointerEvent(click, {
+      clientX: pixel[0] + offsetX,
+      clientY: pixel[1] + offsetY
+    });
+
+    map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, clickEvent));
+    const singleClick = 'singleclick';
+    const singleClickEvent = new PointerEvent(singleClick, {
+      clientX: pixel[0] + offsetX,
+      clientY: pixel[1] + offsetY
+    });
+  }
+  if (urlParams.filter && urlParams.attribute && urlParams.value && urlParams.x && urlParams.y) {
+    const lid = urlParams.filter.split(',').length > 0 ? urlParams.filter.split(',') : urlParams.filter;
+    const att = urlParams.attribute;
+    const pid = urlParams.value;
+    const qf = `${att}='${pid}'`;
+    const animationParameters = animation.getParams();
+    settings.layers.forEach((layer) => {
+      const name = layer.get('name');
+      if (lid.includes(name)) {
+        let tmp;
+        if (layer.getSource().updateQuery) {
+          tmp = layer.getSource().updateQuery(name, qf);
+          layer.setSource(tmp);
+        } else {
+          tmp = layer.getSource().source.updateQuery(name, qf);
+          layer.getSource().source = tmp;
+        }
+        
+        setTimeout(() => {
+          try {
+            const features = tmp.getFeatures();
+            const coords = [];
+            if (features.length > 0) {
+              if (features[0].get('geometry')) {
+                features.forEach((feature) => {
+                  const candidate = feature.getGeometry().getCoordinates();
+                  const type = feature.getGeometry().getType();
+                  if (type === 'Point') {
+                    coords.push(candidate);
+                  }
+                });
+              }
+            }
+            if (coords.length === 1) {
+              const coord = coords[0];
+              makeClick(coords);
+              map.getView().animate({
+                center: coord,
+                zoom: animationParameters.zoom,
+                duration: animationParameters.duration
+              }, () => {
+                makeClick(coords);
+                dispatcher.emitToggleEdit('attribute');
+              });
+            } else if (coords.length > 1) {
+              const poly = new Polygon([coords]);
+              map.getView().fit(poly, { padding: [50, 50, 50, 50], constrainResolution: true, duration: 3000 });
+            }
+          } catch (error) {
+            console.warn(error);
+          }
+        }, 1000);
+      }
+    });
+  }
+  if (urlParams.filter && urlParams.attribute && urlParams.value && !urlParams.x && !urlParams.y) {
+    const lid = urlParams.filter.split(',').length > 0 ? urlParams.filter.split(',') : urlParams.filter;
+    const att = urlParams.attribute;
+    const pid = urlParams.value;
+    const qf = `${att}='${pid}'`;
+    const animationParameters = animation.getParams();
+    settings.layers.forEach((layer) => {
+      const name = layer.get('name');
+      if (lid.includes(name)) {
+        let tmp;
+        if (layer.getSource().updateQuery) {
+          tmp = layer.getSource().updateQuery(name, qf);
+          layer.setSource(tmp);
+        } else {
+          tmp = layer.getSource().source.updateQuery(name, qf);
+          layer.getSource().source = tmp;
+          layer.set('title', titles[pid - 1]);
+        }
+        setTimeout(() => {
+          try {
+            const features = tmp.getFeatures();
+            const coords = [];
+            if (features.length > 0) {
+              if (features[0].get('geometry')) {
+                features.forEach((feature) => {
+                  const candidate = feature.getGeometry().getCoordinates();
+                  const type = feature.getGeometry().getType();
+                  if (type === 'Point') {
+                    coords.push(candidate);
+                  }
+                });
+              }
+            }
+            if (coords.length === 1) {
+              const coord = coords[0];
+              const pixel = map.getPixelFromCoordinate(coord);
+              const click = 'click';
+              const clickEvent = new PointerEvent(click, {
+                clientX: pixel[0],
+                clientY: pixel[1]
+              });
+
+              map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, clickEvent));
+              const singleClick = 'singleclick';
+              const singleClickEvent = new PointerEvent(singleClick, {
+                clientX: pixel[0],
+                clientY: pixel[1]
+              });
+              map.handleMapBrowserEvent(new MapBrowserPointerEvent(singleClick, map, singleClickEvent));
+              map.getView().animate({
+                center: coord,
+                zoom: animationParameters.zoom,
+                duration: animationParameters.duration
+              }, () => {
+                dispatcher.emitToggleEdit('attribute');
+              });
+            } else if (coords.length > 1) {
+              const poly = new Polygon([coords]);
+              map.getView().fit(poly, {
+                padding: [50, 50, 50, 50],
+                constrainResolution: true,
+                duration: animationParameters.duration,
+                callback: () => {
+                  map.getView().animate({
+                    zoom: map.getView().getZoom() + 0.1
+                  });
+                }
+              });
+            }
+          } catch (error) {
+            console.warn(error);
+          }
+        }, 1000);
+      }
     });
   }
   featureinfo.init(settings.featureinfoOptions);
@@ -473,6 +674,7 @@ export default {
   getStyleSettings,
   getMapUrl,
   getMap,
+  getMapOptions,
   getLayers,
   getLayersByProperty,
   getLayer,
@@ -495,5 +697,6 @@ export default {
   checkScale,
   getMapName,
   getConsoleId,
-  getUrl
+  getUrl,
+  getUrlParams
 };

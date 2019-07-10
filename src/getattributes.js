@@ -29,7 +29,7 @@ export default function (feature, layer) {
         title = '';
         val = '';
         if (attribute.name) {
-          if (feature.get(attribute.name)) {
+          if (feature.get(attribute.name) !== undefined) {
             val = feature.get(attribute.name);
             if (attribute.title) {
               title = `<b>${attribute.title}</b>`;
@@ -38,8 +38,8 @@ export default function (feature, layer) {
               if (feature.get(attribute.url)) {
                 const url = createUrl(attribute.urlPrefix, attribute.urlSuffix, replacer.replace(feature.get(attribute.url), feature.getProperties()));
                 val = `<a href="${url}" target="_blank">
-                  ${feature.get(attribute.name)}
-                  </a>`;
+                ${feature.get(attribute.name)}
+                </a>`;
               }
             }
           }
@@ -64,6 +64,10 @@ export default function (feature, layer) {
             helper: geom,
             helperArg: feature.getGeometry()
           });
+        }
+
+        if (attribute.isVisible === false) {
+          attribute.cls = 'o-hidden';
         }
 
         const cls = ` class="${attribute.cls}" ` || '';

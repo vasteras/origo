@@ -12,14 +12,12 @@ origo.controls = controls;
 
 function init(config) {
   viewer.init(config.el, config.options);
-
   // Init controls
-  controlInitialiser(config.options.controls);
+  controlInitialiser.init(config.options.controls);
 }
 
 origo.map.init = function initMap(options, defaultOptions) {
   const config = defaultOptions ? $.extend(origo.config, defaultOptions) : origo.config;
-
   const map = mapLoader(options, config);
   if (map) {
     map.then((mapConfig) => {
