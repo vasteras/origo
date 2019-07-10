@@ -76,7 +76,9 @@
       "id": "0",
       "source": "webb_edit",
       "style": "cirkel",
-      "title": "Punktobjekt",
+      "clusterStyle": "cluster",
+      "layerType": "cluster",
+      "title": "Verksamhet",
       "group": "obj",
       "type": "AGS_FEATURE",
       "visible": true,
@@ -84,8 +86,7 @@
       "queryable": true,
       "filter": "DELETED=0",
       "attributes": [{
-          "title": "PAGEID: ",
-          "name": "PAGEID",
+          "name": "NAME",
           "url": "PAGEID",
           "urlPrefix": "http://www.vasteras.se/",
           "urlSuffix": ".html",
@@ -119,6 +120,10 @@
           "type": "dropdownConnect",
           "connect": "CATEGORYID",
           "options": [{
+              "name": "Aktivitetsplan",
+              "connect": 42
+            },
+            {
               "name": "Badplats",
               "connect": 1
             },
@@ -191,6 +196,10 @@
               "connect": 18
             },
             {
+              "name": "Hundrastgård",
+              "connect": 39
+            },
+            {
               "name": "Högskola och yrkeshögskola",
               "connect": 19
             },
@@ -217,6 +226,14 @@
             {
               "name": "Mötesplats-omsorg",
               "connect": 25
+            },
+            {
+              "name": "Offentlig konst",
+              "connect": 40
+            },
+            {
+              "name": "Offentlig toalett",
+              "connect": 41
             },
             {
               "name": "Park",
@@ -1613,7 +1630,7 @@
       }, {
         "icon": {
           "size": [32, 32],
-          "src": "data/png/Simhall - badhus.png"
+          "src": "data/png/Simhall-badhus.png"
         }
       }],
       [{
@@ -1846,6 +1863,122 @@
         "icon": {
           "size": [32, 32],
           "src": "data/png/Ovrigt.png"
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 39",
+        "circle": {
+          "radius": 5,
+          "stroke": {
+            "color": "rgba(255,255,255,1)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(255,0,0,1)"
+          }
+        }
+      }, {
+        "circle": {
+          "radius": 100,
+          "stroke": {
+            "color": "rgba(0,0,0,0.001)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(0,0,0,0.002)"
+          }
+        }
+      }, {
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/Hundrastgard.png"
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 40",
+        "circle": {
+          "radius": 5,
+          "stroke": {
+            "color": "rgba(255,255,255,1)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(255,0,0,1)"
+          }
+        }
+      }, {
+        "circle": {
+          "radius": 100,
+          "stroke": {
+            "color": "rgba(0,0,0,0.001)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(0,0,0,0.002)"
+          }
+        }
+      }, {
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/OffentligKonst.png"
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 41",
+        "circle": {
+          "radius": 5,
+          "stroke": {
+            "color": "rgba(255,255,255,1)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(255,0,0,1)"
+          }
+        }
+      }, {
+        "circle": {
+          "radius": 100,
+          "stroke": {
+            "color": "rgba(0,0,0,0.001)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(0,0,0,0.002)"
+          }
+        }
+      }, {
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/OffentligToalett.png"
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 42",
+        "circle": {
+          "radius": 5,
+          "stroke": {
+            "color": "rgba(255,255,255,1)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(255,0,0,1)"
+          }
+        }
+      }, {
+        "circle": {
+          "radius": 100,
+          "stroke": {
+            "color": "rgba(0,0,0,0.001)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(0,0,0,0.002)"
+          }
+        }
+      }, {
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/Aktivitetsplan.png"
         }
       }]
     ],
@@ -2637,7 +2770,7 @@
         "filter": "[CATEGORYID] == 30",
         "icon": {
           "size": [32, 32],
-          "src": "data/png/Simhall - badhus.png"
+          "src": "data/png/Simhall-badhus.png"
         }
       }, {
         "text": {
