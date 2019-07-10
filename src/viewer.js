@@ -432,7 +432,7 @@ function init(el, options) {
     breakPoints: mapOptions.breakPoints,
     breakPointsPrefix: mapOptions.breakPointsPrefix
   });
-
+  
   if (urlParams.feature) {
     const featureId = urlParams.feature;
     const layer = getLayer(featureId.split('.')[0]);
@@ -510,7 +510,10 @@ function init(el, options) {
     'Ålderdomshem',
     'Öppen fritidsverksamhet',
     'Öppen förskola',
-    'Övrigt'
+    'Övrigt',
+    'Hundrastgård',
+    'Offentlig konst',
+    'Offentlig toalett'
   ];
   const makeClick = (coords) => {
     const coord = coords[0];
@@ -547,7 +550,7 @@ function init(el, options) {
           tmp = layer.getSource().source.updateQuery(name, qf);
           layer.getSource().source = tmp;
         }
-        
+
         setTimeout(() => {
           try {
             const features = tmp.getFeatures();
