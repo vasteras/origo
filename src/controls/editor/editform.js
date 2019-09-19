@@ -29,7 +29,7 @@ const createForm = function createForm(obj) {
       break;
     case 'dropdown':
       if (val) {
-        firstOption = `<option value=" ${val}" selected>${val}</option>`;
+        firstOption = `<option value="${val}" selected>${val}</option>`;
       } else {
         firstOption = '<option value="" selected>Välj</option>';
       }
@@ -44,7 +44,7 @@ const createForm = function createForm(obj) {
       break;
     case 'dropdownConnect':
       if (val) {
-        firstOption = `<option value=" ${val}" selected>${val}</option>`;
+        firstOption = `<option value="${val}" selected>${val}</option>`;
       } else {
         firstOption = '<option value="" selected>Välj</option>';
       }
