@@ -260,6 +260,10 @@
               "connect": 31
             },
             {
+              "name": "Utegym",
+              "connect": 42
+            },
+            {
               "name": "Vuxenutbildning",
               "connect": 32
             },
@@ -460,6 +464,10 @@
               "connect": 31
             },
             {
+              "name": "Utegym",
+              "connect": 42
+            },
+            {
               "name": "Vuxenutbildning",
               "connect": 32
             },
@@ -657,6 +665,10 @@
             {
               "name": "Träffpunkt",
               "connect": 31
+            },
+            {
+              "name": "Utegym",
+              "connect": 42
             },
             {
               "name": "Vuxenutbildning",
@@ -1874,7 +1886,7 @@
             "width": 1
           },
           "fill": {
-            "color": "rgba(255,0,0,1)"
+            "color": "rgba(255,0,0,0.001)"
           }
         }
       }, {
@@ -1903,7 +1915,7 @@
             "width": 1
           },
           "fill": {
-            "color": "rgba(255,0,0,1)"
+            "color": "rgba(255,0,0,0.001)"
           }
         }
       }, {
@@ -1932,7 +1944,7 @@
             "width": 1
           },
           "fill": {
-            "color": "rgba(255,0,0,1)"
+            "color": "rgba(255,0,0,0.001)"
           }
         }
       }, {
@@ -1961,7 +1973,7 @@
             "width": 1
           },
           "fill": {
-            "color": "rgba(255,0,0,1)"
+            "color": "rgba(255,0,0,0.001)"
           }
         }
       }, {
@@ -2987,6 +2999,115 @@
         "icon": {
           "size": [32, 32],
           "src": "data/png/Ovrigt.png"
+        }
+      }, {
+        "text": {
+          "font": "Bold 9px Arial",
+          "textAlign": "center",
+          "offsetX": 10,
+          "offsetY": -10,
+          "text": "size",
+          "fill": {
+            "color": "rgba(255,255,255,1.0)"
+          }
+        },
+        "icon": {
+          "size": [14, 14],
+          "anchor": [17, 17],
+          "anchorXUnits": "pixels",
+          "anchorYUnits": "pixels",
+          "anchorOrigin": "top-right",
+          "src": "data/png/Svart_14.png",
+          "opacity": 0.65
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 39",
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/OffentligKonst.png"
+        }
+      }, {
+        "text": {
+          "font": "Bold 9px Arial",
+          "textAlign": "center",
+          "offsetX": 10,
+          "offsetY": -10,
+          "text": "size",
+          "fill": {
+            "color": "rgba(255,255,255,1.0)"
+          }
+        },
+        "icon": {
+          "size": [14, 14],
+          "anchor": [17, 17],
+          "anchorXUnits": "pixels",
+          "anchorYUnits": "pixels",
+          "anchorOrigin": "top-right",
+          "src": "data/png/Svart_14.png",
+          "opacity": 0.65
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 40",
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/OffentligKonst.png"
+        }
+      }, {
+        "text": {
+          "font": "Bold 9px Arial",
+          "textAlign": "center",
+          "offsetX": 10,
+          "offsetY": -10,
+          "text": "size",
+          "fill": {
+            "color": "rgba(255,255,255,1.0)"
+          }
+        },
+        "icon": {
+          "size": [14, 14],
+          "anchor": [17, 17],
+          "anchorXUnits": "pixels",
+          "anchorYUnits": "pixels",
+          "anchorOrigin": "top-right",
+          "src": "data/png/Svart_14.png",
+          "opacity": 0.65
+        }
+      }],
+      [{
+        "filter": "[CATEGORYID] == 41",
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/OffentligToalett.png"
+        }
+      }, {
+        "text": {
+          "font": "Bold 9px Arial",
+          "textAlign": "center",
+          "offsetX": 10,
+          "offsetY": -10,
+          "text": "size",
+          "fill": {
+            "color": "rgba(255,255,255,1.0)"
+          }
+        },
+        "icon": {
+          "size": [14, 14],
+          "anchor": [17, 17],
+          "anchorXUnits": "pixels",
+          "anchorYUnits": "pixels",
+          "anchorOrigin": "top-right",
+          "src": "data/png/Svart_14.png",
+          "opacity": 0.65
+        }
+      }]
+    ],
+    [{
+        "filter": "[CATEGORYID] == 42",
+        "icon": {
+          "size": [32, 32],
+          "src": "data/png/Utegym.png"
         }
       }, {
         "text": {

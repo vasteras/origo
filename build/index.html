@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="sv">
 <head>
 	<meta charset="utf-8">
@@ -13,10 +13,11 @@
 <script src="js/origo.js"></script>
 <script type="text/javascript">
 	//Init origo
+	// OBS!! Går ej att ändra index.json till category.json utan det är bättre att byta namn vid utveckling.
     Origo.map.init('index.json');
 </script>
 </body>
-</html>
+</html> -->
 
 <!-- <!DOCTYPE html>
 <html lang="sv">
@@ -46,7 +47,7 @@
 <body>
 	<div id="wrapper">
 		<div id="facility">
-			<h1>AnlÃ¤ggningskarta</h1>
+			<h1>Anläggningskarta</h1>
 			<code>pageid: 4.72235db415385b41c1d1a87</code>
 			<div id="anlaggningskarta"></div>
 		</div>
@@ -60,9 +61,75 @@
 
 </html> -->
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+	<title>Verksamhetskarta exempel</title>
+	<link rel="stylesheet" href="http://localhost/vst00213s/c/inetpub/wwwroot/webb/css/style.css">
+</head>
+<style>
+	#wrapper {
+		padding: 20px;
+		margin: 20px;
+		border: 1px solid black;
+	}
+
+	#category {
+		width: 100%;
+		height: 50%;
+	}
+
+	code {
+		color: red;
+	}
+</style>
+
+<body>
+	<div id="wrapper">
+		<div id="category">
+			<h1>Verksamhetskarta</h1>
+			<code>Verksamhet: <category></category></code>
+			<br>
+			<br>
+			<div id="verksamhetskarta"></div>
+		</div>
+	</div>
+	<script src="http://localhost/vst00213s/c/inetpub/wwwroot/webb/js/origo.min.js"></script>
+	<script type="text/javascript">
+		/**
+		 * Setup - Set dev url, Set production url, debug - displays the current url to the console.
+		 * debug also fetches resources like index.json from the dev url specified in WebMap.
+		 */
+		const dev = "http://localhost/vst00213s/c/inetpub/wwwroot/webb/js/webMap.js";
+		const prod = "http://kartor.vasteras.se/webb/js/webMap.js";
+		const debug = true;
+
+		const script = document.createElement('script');
+		script.src = dev;
+		const body = document.getElementsByTagName('body')[0];
+		body.append(script);
+
+		const category = "Utegym";
+		const categoryHTML = document.getElementsByTagName("category")[0];
+		categoryHTML.innerHTML = category;
+		setTimeout(() => {
+			try {
+				// Badplats, Bibliotek, Boende för missbrukare, Boende för psykiskt funktionsnedsatta och Fotbollsplan finns
+				CategoryMap("verksamhetskarta", category, debug);
+			} catch (error) {
+				console.warn(error);
+			}
+		}, 1000);
+	</script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="sv">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
