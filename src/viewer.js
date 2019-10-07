@@ -513,7 +513,8 @@ function init(el, options) {
     'Övrigt',
     'Hundrastgård',
     'Offentlig konst',
-    'Offentlig toalett'
+    'Offentlig toalett',
+    'Utegym'
   ];
   const makeClick = (coords) => {
     const coord = coords[0];
@@ -649,10 +650,11 @@ function init(el, options) {
               map.getView().fit(poly, {
                 padding: [50, 50, 50, 50],
                 constrainResolution: true,
+                zoom: animationParameters.zoom,
                 duration: animationParameters.duration,
                 callback: () => {
                   map.getView().animate({
-                    zoom: map.getView().getZoom() + 0.1
+                    zoom: map.getView().getZoom() + animationParameters.zoom2
                   });
                 }
               });
