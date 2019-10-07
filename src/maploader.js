@@ -29,7 +29,7 @@ const mapLoader = function mapLoader(mapOptions, config) {
   let mapUrl;
   let baseUrl;
   let json;
-
+  let validJSON = false;
 
   if (mapEl.substring(0, 1) !== '#') {
     mapEl = `#${mapEl}`;
@@ -102,8 +102,13 @@ const mapLoader = function mapLoader(mapOptions, config) {
             map.options.map = json;
             map.options.params = urlParams;
             map.options.baseUrl = baseUrl;
+            validJSON = true;
             return map;
-          }));
+          })
+          .catch(function(error) {
+            console.error("validJSON: ", validJSON);
+          })
+        );
     }
     return null;
   }
