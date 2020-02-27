@@ -1,0 +1,2265 @@
+{
+  "controls": [
+    {
+      "name": "home"
+    },  
+    {
+      "name": "geoposition"
+    },
+    {
+      "name": "mapmenu"
+    },
+	{
+  "name": "position",
+  "options": {
+    "title": "Sweref99 16.30"
+  }
+},
+    {
+      "name": "sharemap"
+    },    
+    {
+      "name": "print"
+    },
+    {
+      "name": "search",
+      "options": {
+          "url": "https://kartserver.vasteras.se/origoserver/ext/singlesearch",
+          "searchAttribute": "NAMN",
+          "geometryAttribute": "GEOM",
+          "title": "Adress",
+          "hintText": "Sök adress..."
+      }
+    },
+    {
+      "name": "legend",
+      "options": {
+          "hasMapLegend": true
+      }
+    }	
+  ],
+  "projectionCode": "EPSG:3010",
+  "projectionExtent": [
+    -1678505.1838360203,
+    4665380,
+    2431912.7361639794,
+    8775797.92
+  ],
+  "proj4Defs": [
+      {
+          "code": "EPSG:3010",
+          "alias": "urn:ogc:def:crs:EPSG::3010",
+          "projection": "+proj=tmerc +lat_0=0 +lon_0=16.5 +k=1 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      }
+  ],
+  "extent": [
+    -1678505.1838360203,
+    4665380,
+    2431912.7361639794,
+    8775797.92
+  ],
+  "center": [
+      153797,
+      6612614
+  ],
+  "home": [
+      134966,
+      6593080,
+      176372,
+      6636922  
+  ],
+    "featureinfoOptions": {
+      "clusterFeatureinfoLevel": 5
+  },
+  "zoom": 4,
+  "resolutions": [
+    1146.8799999999999,
+    573.4399999999999,
+    286.71999999999997,
+    143.35999999999999,
+    71.67999999999999,
+    35.839999999999996,
+    17.919999999999998,
+    8.959999999999999,
+    4.4799999999999995,
+    2.2399999999999998,
+    1.1199999999999999,
+    0.5599999999999999,
+    0.27999999999999997,
+    0.13999999999999999
+  ],
+  "source": {
+    "ags_vasteras": {
+      "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/"
+    },
+    "tk_isbanor_dyn": {
+      "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/tk_isbanor_dyn/MapServer/"
+    },	
+	"tk_lekplatser_dyn": {
+      "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/tk_lekplatser_dyn/FeatureServer/"
+    },
+	"sk_trygghetspunkter_dyn": {
+      "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/sk_trygghetspunkter_dyn/FeatureServer/"
+    },	
+	"kommun_politik_dyn": {
+	  "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/kommun_politik_dyn/FeatureServer/"
+	},	
+    "basemap": {
+      "url": "https://www.malardalskartan.se/geowebcache/service/wmts"
+    }
+  },
+  "groups": [
+        {
+            "name": "utbildning",
+            "title": "Barn & utbildning",
+            "expanded": false,
+			"groups": [
+				{
+					"name": "forskoleverksamhet",
+					"title": "Förskoleverksamhet",
+					"expanded": false
+				},
+				{
+					"name": "fritidsverksamhet",
+					"title": "Fritidsverksamhet",
+					"expanded": false
+				},
+				{
+					"name": "sarskoleverksamhet",
+					"title": "Särskola",
+					"expanded": false
+				}				
+			]
+        },
+        {
+            "name": "omsorg",
+            "title": "Omsorg, stöd & hjälp",
+            "expanded": false,
+			"groups": [
+				{
+					"name": "boende_for_funktionsnedsattning",
+					"title": "Boende funktionsnedsättning asdf asd d",
+					"expanded": false
+				}				
+			]			
+        },
+        {
+            "name": "uppleva",
+            "title": "Uppleva & göra",
+            "expanded": false,
+			"groups": [
+				{
+					"name": "bad",
+					"title": "Bad",
+					"expanded": false
+				},
+				{
+					"name": "idrottsanlaggning",
+					"title": "Idrottsanlaggning",
+					"expanded": false
+				}				
+			]				
+        },  
+		{
+            "name": "kommun",
+            "title": "Kommun & politik",
+            "expanded": false				
+        },      		
+        {
+            "name": "background",
+            "title": "Bakgrundskartor",
+            "expanded": false
+        }
+  ],
+  "layers": [
+		{
+		  "name": "forskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "forskoleverksamhet",
+		  "clusterStyle": "clusterForskola",
+		  "title": "Förskola",
+		  "group": "forskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Förskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "oppen_forskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "forskoleverksamhet",
+		  "clusterStyle": "clusterForskola",
+		  "title": "Öppen förskola",
+		  "group": "forskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Öppen förskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "forskoleklass",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "forskoleverksamhet",
+		  "clusterStyle": "clusterForskola",
+		  "title": "Förskoleklass",
+		  "group": "forskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Förskoleklass'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "pedagogisk_omsorg",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "forskoleverksamhet",
+		  "clusterStyle": "clusterForskola",
+		  "title": "Pedagogisk omsorg",
+		  "group": "forskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Pedagogisk omsorg'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		}, 		
+		{
+		  "name": "grundskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "grundskola",
+		  "clusterStyle": "clusterGrundskola",
+		  "title": "Grundskola",
+		  "group": "utbildning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Grundskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},   
+		{
+		  "name": "gymnasieskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "gymnasieskola",
+		  "clusterStyle": "clusterGymnasieskola",
+		  "title": "Gymnasieskola",
+		  "group": "utbildning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Gymnasieskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},      
+		{
+		  "name": "vuxenutbildning",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "vuxenutbildning",
+		  "clusterStyle": "clusterVuxenutbildning",
+		  "title": "Vuxenutbildning",
+		  "group": "utbildning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Vuxenutbildning'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},  
+		{
+		  "name": "fritidshem",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "fritidsverksamhet",
+		  "clusterStyle": "clusterFritidsverksamhet",
+		  "title": "Fritidshem",
+		  "group": "fritidsverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Fritidshem'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "oppen_fritidsverksamhet",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "fritidsverksamhet",
+		  "clusterStyle": "clusterFritidsverksamhet",
+		  "title": "Öppen fritidsverksamhet",
+		  "group": "fritidsverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Öppen fritidsverksamhet'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "fritidsgard",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "fritidsgard",
+		  "clusterStyle": "clusterFritidsgard",
+		  "title": "Fritidsgård",
+		  "group": "utbildning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Fritidsgård'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},    
+		{
+		  "name": "sarskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "sarskola",
+		  "clusterStyle": "clusterSarskola",
+		  "title": "Särskola",
+		  "group": "sarskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Grundsärskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "gymnasiesarskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "sarskola",
+		  "clusterStyle": "clusterSarskola",
+		  "title": "Gymnasiesärskola",
+		  "group": "sarskoleverksamhet",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Gymnasiesärskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "boende_for_missbrukare",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "boende_for_missbrukare",
+		  "clusterStyle": "clusterBoende_for_missbrukare",
+		  "title": "Boende för missbrukare",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Boende för missbrukare'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},     		   
+		{
+		  "name": "boende_for_psykiskt_funktionsnedsatta",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "boende_for_funktionsnedsattning",
+		  "clusterStyle": "clusterBoende_for_funktionsnedsattning",
+		  "title": "Boende psykiskt funktionsnedsatta",
+		  "group": "boende_for_funktionsnedsattning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Boende för psykiskt funktionsnedsatta'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "gruppbostad",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "boende_for_funktionsnedsattning",
+		  "clusterStyle": "clusterBoende_for_funktionsnedsattning",
+		  "title": "Gruppbostad",
+		  "group": "boende_for_funktionsnedsattning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Gruppbostad'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "servicebostad",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "boende_for_funktionsnedsattning",
+		  "clusterStyle": "clusterBoende_for_funktionsnedsattning",
+		  "title": "Servicebostad",
+		  "group": "boende_for_funktionsnedsattning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Servicebostad'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		}, 		
+		{
+		  "name": "aldreboende",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "boende_for_aldre",
+		  "clusterStyle": "clusterBoende_for_aldre",
+		  "title": "Boende för äldre",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Äldreboende'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},     	
+		{
+		  "name": "dagverksamhet",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "dagverksamhet",
+		  "clusterStyle": "clusterDagverksamhet",
+		  "title": "Dagverksamhet",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Dagverksmahet för personer med demenssjukdom'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},     	
+		{
+		  "name": "familjecentrum",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "familjecentrum",
+		  "clusterStyle": "clusterFamiljecentrum",
+		  "title": "Familjecentrum",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Familjecentrum'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},     	
+		{
+		  "name": "motesplats_for_aldre",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "motesplats_for_aldre",
+		  "clusterStyle": "clusterMotesplats_for_aldre",
+		  "title": "Mötesplatser för äldre",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Mötesplats-omsorg'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},    
+		{
+		  "name": "trygghetspunkter",
+		  "id": "0",
+		  "source": "sk_trygghetspunkter_dyn",
+		  "style": "trygghetspunkter",
+		  "clusterStyle": "clusterTrygghetspunkter",
+		  "title": "Trygghetspunkter",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "visible": false,
+		  "attributes": [
+			  {
+				  "name":"Namn"
+			  },
+			  {
+				"name":"Adress",
+				"title": "Adress: "
+			  },				  		  
+			  {
+				"html": "<a href='http://www.vasteras.se/omsorg-stod-och-hjalp/trygg-och-saker.html' target='_blank'>Läs mer &raquo;</a>"
+			  }
+		  ]
+		}, 	 
+		{
+		  "name": "traffpunkt",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "traffpunkt",
+		  "clusterStyle": "clusterTraffpunkt",
+		  "title": "Träffpunkter",
+		  "group": "omsorg",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Träffpunkt'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},    			    			    		       		     						       		   			 		
+		{
+		  "name": "bibliotek",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "bibliotek",
+		  "clusterStyle": "clusterBibliotek",
+		  "title": "Bibliotek",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Bibliotek'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},   
+		{
+		  "name": "simhall-badhus",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "bad",
+		  "clusterStyle": "clusterBad",
+		  "title": "Simhall-badhus",
+		  "group": "bad",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Simhall-badhus'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "badplats",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "bad",
+		  "clusterStyle": "clusterBad",
+		  "title": "Badplats",
+		  "group": "bad",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Badplats'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "hall-idrottsanlaggning",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "idrottsanlaggning",
+		  "clusterStyle": "clusterIdrottsanlaggning",
+		  "title": "Hall-idrottsanläggning",
+		  "group": "idrottsanlaggning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Hall-idrottsanläggning'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "fotbollsplan",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "idrottsanlaggning",
+		  "clusterStyle": "clusterIdrottsanlaggning",
+		  "title": "Fotbollsplan",
+		  "group": "idrottsanlaggning",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Fotbollsplan'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "isbanor",
+		  "id": "0",
+		  "source": "tk_isbanor_dyn",
+		  "style": "isbanor",
+		  "title": "Isbanor",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "visible": false,
+		  "attributes": [
+			  {
+				  "name":"PLATS",
+				"title": "Namn: "
+			  },
+			  {
+				"name":"SPOLAS_AV",
+				"title": "Spolas av: "
+			  },				  
+			  {
+				"name":"BELYSNING",
+				"title": "Belysning på banan: "
+			  },		  
+			  {
+				"html": "<a href='http://www.vasteras.se/uppleva-och-gora/idrott-och-friluftsliv/skridskoakning.html' target='_blank'>Läs mer &raquo;</a>"
+			  }
+		  ]
+		}, 	
+		{
+		  "name": "lekplatser",
+		  "id": "0",
+		  "source": "tk_lekplatser_dyn",
+		  "style": "lekplatser",
+		  "clusterStyle": "clusterLekplatser",
+		  "title": "Lekplatser",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "visible": false,
+		  "attributes": [
+			  {
+				  "name":"NAMN"
+			  },		  
+			  {
+				"html": "<a href='http://www.vasteras.se/uppleva-och-gora/idrott-och-friluftsliv/lekplatser.html' target='_blank'>Läs mer &raquo;</a>"
+			  }
+		  ]
+		}, 		
+		{
+		  "name": "motionsspar",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "motionsspar",
+		  "clusterStyle": "clusterMotionsspar",
+		  "title": "Motionsspår",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Motionsspår'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},    	
+		{
+		  "name": "museum",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "museum",
+		  "clusterStyle": "clusterMuseum",
+		  "title": "Museum",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Museum'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},    
+		{
+		  "name": "park",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "park",
+		  "clusterStyle": "clusterPark",
+		  "title": "Parker",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Park'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "offentligKonst",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "offentligKonst",
+		  "clusterStyle": "clusterOffentligKonst",
+		  "title": "Offentlig Konst",
+		  "group": "uppleva",
+		  "type": "AGS_FEATURE",
+		  "layerType": "cluster",
+		  "filter": "CATEGORY='Offentlig konst'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "vallokal",
+		  "queryable": true,
+		  "source": "data/vallokal.geojson",
+		  "group": "kommun",
+		  "title": "Vallokal",
+		  "style": "vallokal",
+		  "clusterStyle": "clusterVallokal",
+		  "type": "GEOJSON",
+		  "layerType": "cluster",
+		  "visible": false,
+		  "attributes": [
+			  {
+				  "name":"Distrikt",
+				  "title": "Valdistrikt: "
+			  },
+			  {
+				"html":"<b>Vallokal: </b>{{Byggnad}}, {{Lokal}}",
+				"title": "Vallokal: "
+			  },
+			  {
+				"name":"Adress",
+				"title": "Adress: "
+			  }
+		  ]
+		},
+		{
+		  "name": "valdistrikt",
+		  "style": "valdistrikt",
+		  "title": "Valdistrikt",
+		  "group": "kommun",
+		  "type": "GROUP",
+		  "visible": false,
+		  "layers":
+		  [ 
+		  {
+		  "name": "valdistrikt",
+		  "id": "0",	
+		  "source": "kommun_politik_dyn",
+		  "style": "valdistrikt",
+		  "maxScale": 32000,
+		  "title": "Valdistrikt",
+		  "group": "kommun",
+		  "type": "AGS_FEATURE",
+		  "visible": true,
+		  "attributes": [
+			  {
+				  "html":"<b>Valdistrikt: </b>{{NUMMER}} {{NAMN}}",
+				  "title": "Valdistrikt: "
+			  }
+		  ]
+		},
+		{
+		  "name": "valdistrikt_landsbygd",
+		  "id": "0",	
+		  "source": "kommun_politik_dyn",
+		  "style": "valdistrikt_landsbygd",
+		  "minScale": 32000,
+		  "title": "Valdistrikt",
+		  "group": "kommun",
+		  "type": "AGS_FEATURE",
+		  "visible": true,
+		  "attributes": [
+			  {
+				  "html":"<b>Valdistrikt: </b>{{NUMMER}} {{NAMN}}",
+				  "title": "Valdistrikt: "
+			  }
+		  ]
+		}
+		  ]
+		},
+		{
+		  "name": "kulturskolan",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "kulturskolor",
+		  "title": "Kulturskolor",
+		  "group": "none",
+		  "type": "AGS_FEATURE",
+		  "filter": "CATEGORY='Kulturskolan'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},			
+		{
+		  "name": "vasteras_utvecklas",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "vasteras_utvecklas",
+		  "title": "Västerås utvecklas",
+		  "group": "none",
+		  "type": "AGS_FEATURE",
+		  "filter": "CATEGORY='Västerås utvecklas'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},
+		{
+		  "name": "hogskola_yrkeshogskola",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "hogskola",
+		  "title": "Högskola-yrkeshögskola",
+		  "group": "none",
+		  "type": "AGS_FEATURE",
+		  "filter": "CATEGORY='Högskola och yrkeshögskola'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "utegym",
+		  "id": "0",	
+		  "source": "ags_vasteras",
+		  "style": "utegym",
+		  "title": "Utegym",
+		  "group": "none",
+		  "type": "AGS_FEATURE",
+		  "filter": "CATEGORY='Utegym'",
+		  "visible": false,
+		  "attributes": [
+			  {"name":"NAME",
+			  "url": "PAGEID",
+			  "urlPrefix":"http://www.vasteras.se/",
+			  "urlSuffix":".html"
+		  }]
+		},		
+		{
+		  "name": "vasteras",
+		  "opacity": 0.15,
+		  "title": "Mdk",
+		  "queryable": false,
+		  "source": "data/vasteras.geojson",
+		  "style": "mask",
+		  "type": "GEOJSON",
+		  "visible": true
+		},		
+        {
+            "attribution": "&copy Lantmäteriet Geodatasamverkan",
+            "format": "image/png",
+            "group": "background",
+            "name": "topowebbkartan_nedtonad",
+            "source": "basemap",
+            "title": "Karta, grå",
+            "type": "WMTS",
+            "style": "karta_gra",
+            "visible": true
+        },
+        {
+            "attribution": "&copy Lantmäteriet Geodatasamverkan",
+            "format": "image/png",
+            "group": "background",
+            "name": "topowebbkartan",
+            "source": "basemap",
+            "title": "Karta, färg",
+            "type": "WMTS",
+            "style": "karta_farg",
+            "visible": false
+        },
+        {
+            "attribution": "&copy Lantmäteriet Geodatasamverkan",
+            "format": "image/jpeg",
+            "group": "background",
+            "name": "orto",
+            "source": "basemap",
+            "title": "Flygfoto",
+            "type": "WMTS",
+            "style": "orto",
+            "visible": false
+        }
+  ],
+  "styles": {
+      "mask": [
+        [
+          {
+            "stroke": {
+              "color": "rgba(0,0,0,1.0)"
+            },
+            "fill": {
+              "color": "rgba(0,0,0,1.0)"
+            }
+          }
+        ]
+      ],         
+      "clusterForskola": [
+        [
+          {
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Forskoleverksamhet.png"
+            }            
+          },        
+          {       
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+      "clusterGrundskola": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Grundskola.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],         
+	    "clusterGymnasieskola": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Gymnasieskola.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],         
+	   "clusterVuxenutbildning": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Vuxenutbildning.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],    
+	   "clusterFritidsverksamhet": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Fritidsverksamhet.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],    
+	   "clusterFritidsgard": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Fritidsgard.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],    
+	   "clusterSarskola": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Sarskola.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],      
+	   "clusterAnhorigcentrum": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Anhorigcentrum.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],       
+	  "clusterBoende_for_missbrukare": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Boende_for_missbrukare.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],              
+	   "clusterBoende_for_funktionsnedsattning": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Boende_for_personer_med_funktionsnedsattning.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],                                  
+	   "clusterBoende_for_aldre": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Boende_for_aldre.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],        
+	  "clusterDagverksamhet": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Dagverksamhet.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],   
+	   "clusterFamiljecentrum": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Familjecentrum.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],       
+	   "clusterMotesplats_for_aldre": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Motesplatser_for_aldre.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],            
+	   "clusterTraffpunkt": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Traffpunkter.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],            
+	   "clusterBibliotek": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Bibliotek.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],            
+	  "clusterBad": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Bad.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+	  "clusterIdrottsanlaggning": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Idrottsanlaggningar.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+	  "clusterLekplatser": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Lekplatser.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],          
+	  "clusterMotionsspar": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Motionsspar.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+	  "clusterTrygghetspunkter": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Trygghetspunkt.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],	  
+	    "clusterMuseum": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Museum.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+	"clusterVallokal": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+			   "imgSize": [32,32],
+			  
+              "src": "img/svg/vallokal.svg"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],	  
+	  "clusterPark": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Parker.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],
+	"clusterOffentligKonst": [
+        [
+          {       
+            "icon": {
+              "size": [32,32],
+              "src": "data/png/Offentlig_konst.png"
+            }            
+          },        
+          {            
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }           
+            },
+            "icon": {
+              "size": [14,14],
+              "anchor": [17,17],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",            
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }             
+          }
+        ]
+      ],	  
+      "cirkel": [
+        [
+          {
+            "circle": {
+              "radius": 6,
+              "stroke": {
+                "color": "rgba(0,0,0,1)",
+                "width": 2
+              },
+              "fill": {
+                "color": "rgba(0,0,0,0.5)"
+              }       
+            }
+          }
+        ]
+      ],      
+  "forskoleverksamhet": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Forskoleverksamhet.png"
+        }
+      }
+    ]
+  ],
+  "grundskola": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+           "src": "data/png/Grundskola.png"
+        }
+      }
+    ]
+  ],
+  "gymnasieskola": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+           "src": "data/png/Gymnasieskola.png"
+        }
+      }
+    ]
+  ],
+  "vuxenutbildning": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Vuxenutbildning.png"
+        }
+      }
+    ]
+  ],
+  "fritidsverksamhet": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Fritidsverksamhet.png"
+        }
+      }
+    ]
+  ],
+  "fritidsgard": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Fritidsgard.png"
+        }
+      }
+    ]
+  ],
+  "sarskola": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Sarskola.png"
+        }
+      }
+    ]
+  ],
+  "anhorigcentrum": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+         "src": "data/png/Anhorigcentrum.png"
+        }
+      }
+    ]
+  ],
+  "boende_for_missbrukare": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Boende_for_missbrukare.png"
+        }
+      }
+    ]
+  ],
+  "boende_for_funktionsnedsattning": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Boende_for_personer_med_funktionsnedsattning.png"
+        }
+      }
+    ]
+  ],
+  "boende_for_aldre": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Boende_for_aldre.png"
+        }
+      }
+    ]
+  ],
+  "dagverksamhet": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Dagverksamhet.png"
+        }
+      }
+    ]
+  ],
+  "familjecentrum": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Familjecentrum.png"
+        }
+      }
+    ]
+  ],
+  "motesplats_for_aldre": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Motesplatser_for_aldre.png"
+        }
+      }
+    ]
+  ],
+   "trygghetspunkter": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Trygghetspunkt.png"
+        }
+      }
+    ]
+  ],  
+  "traffpunkt": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Traffpunkter.png"
+        }
+      }
+    ]
+  ],
+  "bibliotek": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Bibliotek.png"
+        }
+      }
+    ]
+  ],
+  "bad": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Bad.png"
+        }
+      }
+    ]
+  ],
+  "idrottsanlaggning": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Idrottsanlaggningar.png"
+        }
+      }
+    ]
+  ],
+   "isbanor": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Isbanor.png"
+        }
+      }
+    ]
+  ],  
+  "lekplatser": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Lekplatser.png"
+        }
+      }
+    ]
+  ],
+  "motionsspar": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Motionsspar.png"
+        }
+      }
+    ]
+  ],
+  "museum": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+          "src": "data/png/Museum.png"
+        }
+      }
+    ]
+  ],
+  "park": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+         "src": "data/png/Parker.png"
+        }
+      }
+    ]
+  ],
+  "offentligKonst": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+         "src": "data/png/Offentlig_konst.png"
+        }
+      }
+    ]
+  ],
+  "vasteras_utvecklas": [
+    [
+      {
+        "icon": {
+          "anchor": [0.5, 32],
+          "anchorXUnits": "fraction",
+          "anchorYUnits": "pixels",
+          "src": "img/png/drop_blue.png",
+		  "size": [24, 36]
+        }
+      }
+    ]
+  ],
+  "hogskola": [
+    [
+      {
+        "icon": {
+          "anchor": [0.5, 32],
+          "anchorXUnits": "fraction",
+          "anchorYUnits": "pixels",
+          "src": "img/png/drop_blue.png",
+		  "size": [24, 36]
+        }
+      }
+    ]
+  ],  
+  "kulturskolor": [
+    [
+      {
+        "icon": {
+          "anchor": [0.5, 32],
+          "anchorXUnits": "fraction",
+          "anchorYUnits": "pixels",
+          "src": "img/png/drop_blue.png",
+		  "size": [24, 36]
+        }
+      }
+    ]
+  ],
+  "utegym": [
+    [
+      {
+        "icon": {
+          "anchor": [0.5, 32],
+          "anchorXUnits": "fraction",
+          "anchorYUnits": "pixels",
+          "src": "img/png/drop_blue.png",
+		  "size": [24, 36]
+        }
+      }
+    ]
+  ],
+"valdistrikt": [
+      [{
+          "stroke": {
+            "color": "rgba(51,153,204,1)",
+            "width": 2
+          },
+          "fill": {
+            "color": "rgba(103,60,31,0)"
+          }
+        },
+		{
+          "text": {
+            "font": "Bold 12px Arial",
+            "textAlign": "center",
+            "text": "{{NUMMER}}\n{{NAMN}}",
+            "fill": {
+              "color": "rgba(51,153,204,1.0)"
+            },
+            "stroke": {
+              "color": "rgba(255,255,255,1)",
+              "width": 2
+            }
+          }
+        }
+      ]
+    ],
+	"valdistrikt_landsbygd": [
+      [{
+          "stroke": {
+            "color": "rgba(51,153,204,1)",
+            "width": 1
+          },
+          "fill": {
+            "color": "rgba(103,60,31,0)"
+          }
+		  }
+      ]
+        ],
+	  "vallokal": [
+    [
+      {
+        "icon": {
+          "size": [
+            32,
+            32
+          ],
+		  "imgSize": [
+            32,
+            32
+          ],
+          "src": "img/svg/vallokal.svg"
+        }
+      }
+    ]
+  ],  
+  "karta_gra": [
+    [
+      {
+        "image": {
+          "src": "img/png/gra.png"
+        }
+      }
+    ]
+  ],
+  "karta_farg": [
+    [
+      {
+        "image": {
+          "src": "img/png/farg.png"
+        }
+      }
+    ]
+  ],
+  "orto": [
+    [
+      {
+        "image": {
+          "src": "img/png/orto.png"
+        }
+      }
+    ]
+  ]
+  }
+}
