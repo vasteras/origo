@@ -1,4 +1,6 @@
-import { Component, Button, Element as El, ToggleGroup, dom } from '../ui';
+import {
+  Component, Button, Element as El, ToggleGroup, dom
+} from '../ui';
 import imageSource from './legend/imagesource';
 import Overlays from './legend/overlays';
 
@@ -26,7 +28,7 @@ const Legend = function Legend(options = {}) {
   let layerButtonEl;
   let isExpanded;
   const cls = `${clsSettings} control bottom-right box overflow-hidden flex row o-legend`.trim();
-  const style = dom.createStyle(Object.assign({}, { width: 'auto' }, styleSettings));
+  const style = dom.createStyle({ width: 'auto', ...styleSettings });
 
   const addBackgroundButton = function addBackgroundButton(layer) {
     const styleName = layer.get('styleName') || 'default';
@@ -203,9 +205,9 @@ const Legend = function Legend(options = {}) {
       });
 
       if (toolsCmp) {
-        mainContainerComponents = [overlaysCmp, toolsCmp, baselayersCmp]
+        mainContainerComponents = [overlaysCmp, toolsCmp, baselayersCmp];
       } else {
-        mainContainerComponents = [overlaysCmp, baselayersCmp]
+        mainContainerComponents = [overlaysCmp, baselayersCmp];
       }
 
       mainContainerCmp = El({

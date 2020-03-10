@@ -34,7 +34,15 @@
     {
       "name": "legend",
       "options": {
-          "hasMapLegend": true
+          "hasMapLegend": true,
+          "style": {
+            "width": "300px"
+          },
+          "cls": "scrollbar",
+          "contentStyle": {
+            "width": "300px"
+          },
+          "contentCls": "scrollbar"
       }
     }	
   ],
@@ -138,7 +146,7 @@
 			"groups": [
 				{
 					"name": "boende_for_funktionsnedsattning",
-					"title": "Boende funktionsnedsättning asdf asd d",
+					"title": "Boende funktionsnedsättning",
 					"expanded": false
 				}				
 			]			
@@ -496,16 +504,16 @@
 		  }]
 		},     	
 		{
-		  "name": "dagverksamhet",
+		  "name": "dagverksamhet_inom_funktionsnedsattning",
 		  "id": "0",	
 		  "source": "ags_vasteras",
-		  "style": "dagverksamhet",
-		  "clusterStyle": "clusterDagverksamhet",
-		  "title": "Dagverksamhet",
+		  "style": "dagverksamhet_inom_funktionsnedsattning",
+		  "clusterStyle": "clusterDagverksamhetInomFuntionsnedsattning",
+		  "title": "Dagverksamhet inom funktinosnedsättning",
 		  "group": "omsorg",
 		  "type": "AGS_FEATURE",
 		  "layerType": "cluster",
-		  "filter": "CATEGORY='Dagverksmahet för personer med demenssjukdom'",
+		  "filter": "CATEGORY='Dagverksmahet inom funktionsnedsättning'",
 		  "visible": false,
 		  "attributes": [
 			  {"name":"NAME",
@@ -1350,12 +1358,12 @@
           }
         ]
       ],        
-	  "clusterDagverksamhet": [
+	  "clusterDagverksamhetInomFuntionsnedsattning": [
         [
           {       
             "icon": {
               "size": [32,32],
-              "src": "data/png/Dagverksamhet.png"
+              "src": "data/png/Dagverksamhet_inom_funktionsnedsattning.png"
             }            
           },        
           {            
@@ -1945,7 +1953,7 @@
       }
     ]
   ],
-  "dagverksamhet": [
+  "dagverksamhet_inom_funktionsnedsattning": [
     [
       {
         "icon": {
@@ -1953,7 +1961,7 @@
             32,
             32
           ],
-          "src": "data/png/Dagverksamhet.png"
+          "src": "data/png/dagverksamhet_inom_funktionsnedsattning.png"
         }
       }
     ]
