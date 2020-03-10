@@ -101,7 +101,9 @@
       "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/"
     },
     "tk_isbanor_dyn": {
-      "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/tk_isbanor_dyn/MapServer/"
+      "url": "https://kartserver.vasteras.se/geoserver/vasteras_se/wfs",
+      "workspace": "vasteras_se",
+      "version": "1.1.0"
     },	
 	"tk_lekplatser_dyn": {
       "url": "https://kartor.vasteras.se/arcgis/rest/services/ext/tk_lekplatser_dyn/FeatureServer/"
@@ -699,14 +701,15 @@
 		  }]
 		},		
 		{
-		  "name": "isbanor",
-		  "id": "0",
+		  "name": "ISBANOR",
 		  "source": "tk_isbanor_dyn",
-		  "style": "isbanor",
+      "style": "isbanor",
+      "clusterStyle": "clusterIsbanor",
+      "layerType": "cluster",
 		  "title": "Isbanor",
 		  "group": "uppleva",
-		  "type": "AGS_FEATURE",
-		  "visible": false,
+		  "type": "WFS",
+		  "visible": true,
 		  "attributes": [
 			  {
 				  "name":"PLATS",
@@ -1016,7 +1019,47 @@
             }
           }
         ]
-      ],         
+      ],
+      "clusterIsbanor": [
+        [
+          {
+            "icon": {
+              "size": [
+                32,
+                32
+              ],
+              "src": "data/png/Isbanor.png"
+            }
+          },
+          {
+            "text": {
+              "font": "Bold 9px Arial",
+              "textAlign": "center",
+              "offsetX": 10,
+              "offsetY": -10,
+              "text": "size",
+              "fill": {
+                "color": "rgba(255,255,255,1.0)"
+              }
+            },
+            "icon": {
+              "size": [
+                14,
+                14
+              ],
+              "anchor": [
+                17,
+                17
+              ],
+              "anchorXUnits": "pixels",
+              "anchorYUnits": "pixels",
+              "anchorOrigin": "top-right",
+              "src": "data/png/Svart_14.png",
+              "opacity": 0.65
+            }
+          }
+        ]
+      ],
       "clusterForskola": [
         [
           {

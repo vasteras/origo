@@ -65,7 +65,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
     resolutions,
     tileSize: [256, 256]
   };
-  const tileGridSettings = Object.assign({}, defaultTileGridOptions, tileGridOptions);
+  const tileGridSettings = { ...defaultTileGridOptions, ...tileGridOptions };
   const mapGridCls = mapGrid ? 'o-mapgrid' : '';
   const cls = `${clsOptions} ${mapGridCls} ${mapCls} o-ui`.trim();
   const footerData = pageSettings.footer || {};
@@ -131,7 +131,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
       mapUrl = `${window.location.href}?`;
     }
     const mapView = map.getView();
-    const centerCoords = mapView.getCenter().map(coord => parseInt(coord, 10));
+    const centerCoords = mapView.getCenter().map((coord) => parseInt(coord, 10));
     const zoomLevel = mapView.getZoom();
     const layers = map.getLayers();
 
@@ -151,18 +151,18 @@ const Viewer = function Viewer(targetOption, options = {}) {
   const getLayers = () => map.getLayers().getArray();
 
   const getLayersByProperty = function getLayersByProperty(key, val, byName) {
-    const layers = map.getLayers().getArray().filter(layer => layer.get(key) && layer.get(key) === val);
+    const layers = map.getLayers().getArray().filter((layer) => layer.get(key) && layer.get(key) === val);
 
     if (byName) {
-      return layers.map(layer => layer.get('name'));
+      return layers.map((layer) => layer.get('name'));
     }
     return layers;
   };
 
-  const getLayer = layerName => getLayers().filter(layer => layer.get('name') === layerName)[0];
+  const getLayer = (layerName) => getLayers().filter((layer) => layer.get('name') === layerName)[0];
 
   const getQueryableLayers = function getQueryableLayers() {
-    const queryableLayers = getLayers().filter(layer => layer.get('queryable') && layer.getVisible());
+    const queryableLayers = getLayers().filter((layer) => layer.get('queryable') && layer.getVisible());
     return queryableLayers;
   };
 
@@ -180,7 +180,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
   };
 
   const getGroup = function getGroup(groupName) {
-    return groups.find(group => group.name === groupName);
+    return groups.find((group) => group.name === groupName);
   };
 
   const getSource = function getSource(name) {
@@ -200,7 +200,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
 
   const getControlByName = function getControlByName(name) {
     const components = this.getComponents();
-    const control = components.find(component => component.name === name);
+    const control = components.find((component) => component.name === name);
     if (!control) {
       return null;
     }
@@ -232,7 +232,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
           legend: false
         };
         savedProps.name = initialProps.name;
-        const mergedProps = Object.assign({}, initialProps, savedProps);
+        const mergedProps = { ...initialProps, ...savedProps };
         acc.push(mergedProps);
         return acc;
       }, []);
@@ -294,9 +294,9 @@ const Viewer = function Viewer(targetOption, options = {}) {
     const defaultProps = {
       type: 'group'
     };
-    const groupDef = Object.assign({}, defaultProps, groupProps);
+    const groupDef = { ...defaultProps, ...groupProps };
     const name = groupDef.name;
-    if (!(groups.filter(group => group.name === name).length)) {
+    if (!(groups.filter((group) => group.name === name).length)) {
       groups.push(groupDef);
       this.dispatch('add:group', {
         group: groupDef
@@ -312,7 +312,7 @@ const Viewer = function Viewer(targetOption, options = {}) {
 
   // removes group and any depending subgroups and layers
   const removeGroup = function removeGroup(groupName) {
-    const group = groups.find(item => item.name === groupName);
+    const group = groups.find((item) => item.name === groupName);
     if (group) {
       const layers = getLayersByProperty('group', groupName);
       layers.forEach((layer) => {

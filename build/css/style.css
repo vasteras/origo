@@ -18,6 +18,15 @@
   --scrollbarBG: white;
   --thumbBG: #dcdcdc;
 } */
+  /* .text-overflow-clip {
+  text-overflow: clip;
+}
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+.text-nowrap {
+  white-space: nowrap;
+} */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -1162,12 +1171,6 @@
     font-weight: 600; }
   .o-ui .text-weight-bold {
     font-weight: 700; }
-  .o-ui .text-overflow-clip {
-    text-overflow: clip; }
-  .o-ui .text-overflow-ellipsis {
-    text-overflow: ellipsis; }
-  .o-ui .text-nowrap {
-    white-space: nowrap; }
   .o-ui .text-fade:after {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%);
     bottom: 0;
