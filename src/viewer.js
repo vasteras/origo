@@ -42,6 +42,7 @@ let urlParams;
 let pageSettings;
 let mapOptions;
 const pageTemplate = {};
+let titles = [];
 
 function render(el, options) {
   pageSettings = options.pageSettings;
@@ -152,6 +153,14 @@ function getTileGrid() {
 
 function getTileSize() {
   return settings.tileSize;
+}
+
+function getTitles() {
+  return titles;
+}
+
+function setTitles(t) {
+  titles = t;
 }
 
 function getUrl() {
@@ -432,7 +441,7 @@ function init(el, options) {
     breakPoints: mapOptions.breakPoints,
     breakPointsPrefix: mapOptions.breakPointsPrefix
   });
-  
+
   if (urlParams.feature) {
     const featureId = urlParams.feature;
     const layer = getLayer(featureId.split('.')[0]);
@@ -472,50 +481,6 @@ function init(el, options) {
       geometry: new geom[urlParams.selection.geometryType](urlParams.selection.coordinates)
     });
   }
-  const titles = [
-    'Badplats',
-    'Bibliotek',
-    'Boende för missbrukare',
-    'Boende för psykiskt funktionsnedsatta',
-    'Cykelpumpar',
-    'Dagverksmahet för personer med demenssjukdom',
-    'Familjecentrum',
-    'Fotbollsplan',
-    'Fritidsgård',
-    'Fritidshem',
-    'Förskola',
-    'Förskoleklass',
-    'Grundskola',
-    'Grundsärskola',
-    'Gruppbostad',
-    'Gymnasieskola',
-    'Gymnasiesärskola',
-    'Hall-idrottsanläggning',
-    'Högskola och yrkeshögskola',
-    'Korttidsvistelse utanför det egna hemmet',
-    'Kulturskolan',
-    'Motionsspår',
-    'Museum',
-    'Mötesplats för anhöriga',
-    'Mötesplats-omsorg',
-    'Park',
-    'Pedagogisk omsorg',
-    'Servicebostad',
-    'Sfi',
-    'Simhall-badhus',
-    'Träffpunkt',
-    'Vuxenutbildning',
-    'Västerås utvecklas',
-    'Äldreboende',
-    'Ålderdomshem',
-    'Öppen fritidsverksamhet',
-    'Öppen förskola',
-    'Övrigt',
-    'Hundrastgård',
-    'Offentlig konst',
-    'Offentlig toalett',
-    'Utegym'
-  ];
   const makeClick = (coords) => {
     const coord = coords[0];
     const pixel = map.getPixelFromCoordinate(coord);
@@ -697,6 +662,8 @@ export default {
   getClusterOptions,
   getTileGrid,
   getTileSize,
+  getTitles,
+  setTitles,
   removeLayer,
   removeOverlays,
   checkScale,
