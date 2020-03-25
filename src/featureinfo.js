@@ -29,6 +29,7 @@ let overlay;
 let hitTolerance;
 let items;
 let popup;
+let selectedResult; 
 
 function clear() {
   selectionLayer.clear();
@@ -175,6 +176,7 @@ function onClick(evt) {
         const result = serverResult.concat(clientResult);
         if (result.length > 0) {
           selectionLayer.clear();
+          selectedResult = result;
           identify(result, identifyTarget, evt.coordinate);
         } else if (selectionLayer.getFeatures().length > 0) {
           clear();
@@ -237,10 +239,15 @@ function init(optOptions) {
   $(document).on('enableInteraction', onEnableInteraction);
 }
 
+function getSelectedResult() {
+  return selectedResult;
+}
+
 export default {
   init,
   clear,
   getSelectionLayer,
+  getSelectedResult,
   getSelection,
   getPin,
   getHitTolerance,
