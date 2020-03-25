@@ -3,7 +3,7 @@ import animation from '../src/controls/animation';
 import attribution from '../src/controls/attribution';
 import draganddrop from '../src/controls/draganddrop';
 import editor from '../src/controls/editor';
-import fullscreen from '../src/controls/fullscreen';
+import fullscreen from '../src/controls/fullscreen/fullscreen';
 import geoposition from '../src/controls/geoposition';
 import home from '../src/controls/home';
 import legend from '../src/controls/legend';
