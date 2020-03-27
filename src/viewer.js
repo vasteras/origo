@@ -481,6 +481,23 @@ function init(el, options) {
       geometry: new geom[urlParams.selection.geometryType](urlParams.selection.coordinates)
     });
   }
+
+  const makeClick2 = (pixel) => {
+    const click = 'click';
+    const clickEvent = new PointerEvent(click, {
+      clientX: pixel[0] + 1,
+      clientY: pixel[1] + 1
+    });
+
+    map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, clickEvent));
+    const singleClick = 'singleclick';
+    const singleClickEvent = new PointerEvent(singleClick, {
+      clientX: pixel[0] + 1,
+      clientY: pixel[1] + 1
+    });
+    map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, singleClickEvent));
+  };
+
   const makeClick = (coords) => {
     const coord = coords[0];
     const pixel = map.getPixelFromCoordinate(coord);
@@ -493,12 +510,24 @@ function init(el, options) {
     });
 
     map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, clickEvent));
+
     const singleClick = 'singleclick';
     const singleClickEvent = new PointerEvent(singleClick, {
       clientX: pixel[0] + offsetX,
       clientY: pixel[1] + offsetY
     });
-  }
+    map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, singleClickEvent));
+    const clickedPixels = featureinfo.getPixel();
+    if (pixel[0] !== clickedPixels[0] || pixel[1] !== clickedPixels[1]) {
+      const sl = featureinfo.getSelectionLayer();
+      sl.set('visible', false);
+      setTimeout(() => {
+        sl.set('visible', true);
+        makeClick2(pixel);
+      }, 300);
+    }
+  };
+  // TODO: Make this into a module....
   if (urlParams.filter && urlParams.attribute && urlParams.value && urlParams.x && urlParams.y) {
     const lid = urlParams.filter.split(',').length > 0 ? urlParams.filter.split(',') : urlParams.filter;
     const att = urlParams.attribute;
@@ -534,7 +563,7 @@ function init(el, options) {
             }
             if (coords.length === 1) {
               const coord = coords[0];
-              makeClick(coords);
+              // makeClick(coords);
               map.getView().animate({
                 center: coord,
                 zoom: animationParameters.zoom,
@@ -598,6 +627,7 @@ function init(el, options) {
 
               map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, clickEvent));
               const singleClick = 'singleclick';
+              // TODO: Instead of buffer find closest point.
               const singleClickEvent = new PointerEvent(singleClick, {
                 clientX: pixel[0],
                 clientY: pixel[1]

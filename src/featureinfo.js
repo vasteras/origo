@@ -29,7 +29,8 @@ let overlay;
 let hitTolerance;
 let items;
 let popup;
-let selectedResult; 
+let selectedResult;
+let pixel;
 
 function clear() {
   selectionLayer.clear();
@@ -165,6 +166,7 @@ function identify(identifyItems, target, coordinate) {
 }
 
 function onClick(evt) {
+  pixel = evt.pixel;
   savedPin = undefined;
   // Featurinfo in two steps. Concat serverside and clientside when serverside is finished
   const clientResult = getFeatureInfo.getFeaturesAtPixel(evt, clusterFeatureinfoLevel);
@@ -243,6 +245,18 @@ function getSelectedResult() {
   return selectedResult;
 }
 
+function getPixel() {
+  return pixel;
+}
+
+function getOverlay() {
+  return overlay;
+}
+
+function getSavedPin() {
+  return savedPin;
+}
+
 export default {
   init,
   clear,
@@ -251,5 +265,8 @@ export default {
   getSelection,
   getPin,
   getHitTolerance,
-  identify
+  getOverlay,
+  getSavedPin,
+  identify,
+  getPixel
 };
