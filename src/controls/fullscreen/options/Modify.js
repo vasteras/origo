@@ -4,6 +4,7 @@
 
 import ErrorHandler from '../utils/ErrorHandler';
 import NullExpected from './modes/NullExpected';
+import Expected from './modes/Expected';
 import featureinfo from '../../../featureinfo';
 
 /**
@@ -19,11 +20,13 @@ class Modify {
     const {
       appUrl, field, config, translate
     } = options;
-    this.NullExpected = new NullExpected({
+    const ModifyOptions = {
       Modify: {
         appUrl, field, config, translate
       }
-    });
+    };
+    this.NullExpected = new NullExpected(ModifyOptions);
+    this.Expected = new Expected(ModifyOptions);
   }
 
   set setParams(params) {
@@ -50,28 +53,33 @@ class Modify {
     }
   }
 
-  init() {
-    const {
-      mode, params, modified, selectedReslut, layerName, values
-    } = this;
-
-    this.NullExpected.addModifyState({
-      mode, params, modified, selectedReslut, layerName, values
-    });
+  initExpectedMode() {
     const { expect } = this.options;
     this.expectedMode = false;
     expect.forEach((field) => {
-      if (this.params.includes(field)) {
+      if (this.params.includes(field.toUpperCase()) || this.params.includes(field.toLowerCase())) {
         this.expectedMode = true;
-        if (mode === 'selection') {
-          console.log('expected field: ', field, 'selection');
-        } else if (mode === 'no-selection') {
-          console.log('expected field: ', field, 'no-selection');
-        }
       }
     });
+  }
 
-    this.NullExpected.init();
+  init() {
+    this.initExpectedMode();
+    const {
+      mode, params, modified, selectedReslut, layerName, values, expectedMode
+    } = this;
+
+    if (expectedMode) {
+      this.Expected.addModifyState({
+        mode, params, modified, selectedReslut, layerName, values
+      });
+      this.Expected.init();
+    } else {
+      this.NullExpected.addModifyState({
+        mode, params, modified, selectedReslut, layerName, values
+      });
+      this.NullExpected.init();
+    }
   }
 }
 
