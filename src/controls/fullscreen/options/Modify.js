@@ -2,9 +2,10 @@
  *  @module origo/controls/fullscreen/options/modify
  */
 
-import Translate from '../utils/Translate';
-import Replacer from '../utils/Replacer';
+import ErrorHandler from '../utils/ErrorHandler';
+import NullExpected from './modes/NullExpected';
 import featureinfo from '../../../featureinfo';
+
 /**
  * @classdesc
  * This class modifies the url params based on user options for fullscreen.
@@ -13,52 +14,64 @@ import featureinfo from '../../../featureinfo';
 class Modify {
   constructor(options) {
     this.options = options;
-    const { translate } = options;
-    this.translator = new Translate(translate);
-    this.selectedReslut = [];
-    this.selectedReslut.length = 0;
+    this.errorHandler = new ErrorHandler(options);
+    this.errorHandler.check('appUrl', 'field', 'config', 'translate', 'expect');
+    const {
+      appUrl, field, config, translate
+    } = options;
+    this.NullExpected = new NullExpected({
+      Modify: {
+        appUrl, field, config, translate
+      }
+    });
   }
+
   set setParams(params) {
     this.params = params;
   }
-  setSelectionResults() {
-    this.selectedReslut = featureinfo.getSelectedResult();
-    const { layer: { values_: { name: layerName } }, feature: { values_: values } } = this.selectedReslut[0];
-    this.layerName = layerName;
-    this.values = values;
-  }
+
   get isReady() {
     this.setSelectionResults();
-    const { appUrl, config, pick } = this.options;
-    return !!(appUrl && config && pick && this.selectedReslut);
-  }
-  get modified() {
-    return `${this.options.appUrl}#${this.params}`;
-  }
-  controlLayerName(layerName, selectedField) {
-    const re = new Replacer({ target: this.params, find: layerName, change: this.translator.parse(selectedField) });
-    this.params = re.replaceAll();
+    if (this.selectedReslut) {
+      this.mode = 'selection';
+    } else {
+      this.mode = 'no-selection';
+    }
+    const { appUrl, config, field } = this.options;
+    return !!(appUrl && config && field && this.mode);
   }
 
-  controlConfigName() {
-    const re = new Replacer({ target: this.params, find: this.last, change: this.options.config });
-    this.params = re.replaceAll();
-  }
-
-  fromLast(n) {
-    const lastSplit = this.params.split('=');
-    this.last = lastSplit[lastSplit.length - n];
+  setSelectionResults() {
+    this.selectedReslut = featureinfo.getSelectedResult();
+    if (this.selectedReslut) {
+      const { layer: { values_: { name: layerName } }, feature: { values_: values } } = this.selectedReslut[0];
+      this.layerName = layerName;
+      this.values = values;
+    }
   }
 
   init() {
-    const { pick, config } = this.options;
-    this.selectedField = this.values[pick];
-    this.controlLayerName(this.layerName, this.selectedField);
-    this.fromLast(1);
-    if (config !== this.last) {
-      this.controlConfigName();
-    }
-    window.open(this.modified);
+    const {
+      mode, params, modified, selectedReslut, layerName, values
+    } = this;
+
+    this.NullExpected.addModifyState({
+      mode, params, modified, selectedReslut, layerName, values
+    });
+    const { expect } = this.options;
+    this.expectedMode = false;
+    expect.forEach((field) => {
+      if (this.params.includes(field)) {
+        this.expectedMode = true;
+        if (mode === 'selection') {
+          console.log('expected field: ', field, 'selection');
+        } else if (mode === 'no-selection') {
+          console.log('expected field: ', field, 'no-selection');
+        }
+      }
+    });
+
+    this.NullExpected.init();
   }
 }
 

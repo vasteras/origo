@@ -13,12 +13,14 @@ let modify;
 function goFullScreen() {
   const url = permalink.getPermalink();
   if (modify) {
+    // TODO: What do if feature is not selected ?!?, what should I pass.
     modify.setParams = url.split('#')[1];
     if (modify.isReady) {
       modify.init();
     }
   } else {
-    window.open(url);
+    console.log('window open: ', url);
+    // window.open(url);
   }
 }
 
@@ -61,17 +63,21 @@ function init(optOptions) {
   notOnlyEmbedded = options.notOnlyEmbedded || false;
   const {
     appUrl,
-    pick,
     config,
-    translate
+    translate,
+    field,
+    expect
   } = options;
-  if (appUrl && pick && config && translate) {
+  try {
     modify = new Modify({
       appUrl,
-      pick,
+      field,
       config,
-      translate
+      translate,
+      expect
     });
+  } catch (error) {
+    console.error(error);
   }
   render(target);
   bindUIActions();
