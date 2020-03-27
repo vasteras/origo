@@ -28,6 +28,13 @@ permalinkStore.getState = function getState() {
   state.layers = getSaveLayers(layers);
   state.center = view.getCenter().map(coord => Math.round(coord)).join();
   state.zoom = view.getZoom().toString();
+  const urlParams = viewer.getUrlParams();
+  const { attribute, filter, value } = urlParams;
+  if (attribute && filter && value) {
+    state.attribute = urlParams.attribute;
+    state.filter = urlParams.filter;
+    state.value = urlParams.value;
+  }
 
   if (featureinfo.getSelection().id) {
     state.feature = featureinfo.getSelection().id;
