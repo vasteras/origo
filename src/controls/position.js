@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import MousePosition from 'ol/control/MousePosition';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
@@ -104,9 +105,9 @@ function transformCoords(coords, source, destination) {
 
 function round(coords) {
   if (precision) {
-    return coords.map(coord => coord.toFixed(precision));
+    return coords.map((coord) => coord.toFixed(precision));
   }
-  return coords.map(coord => Math.round(coord));
+  return coords.map((coord) => Math.round(coord));
 }
 
 function updateCoords(sourceCoords) {
@@ -128,7 +129,7 @@ function validateCoordinate(strCoords) {
   let inExtent;
 
   // validate numbers
-  let coords = strCoords.split(',').map(coord => parseFloat(coord))
+  let coords = strCoords.split(',').map((coord) => parseFloat(coord))
     .filter((coord) => {
       if (Number.isNaN(coord)) {
         return coord;
