@@ -225,7 +225,7 @@ function renderList(suggestion, input) {
 
 function dbToList() {
   const items = Object.keys(searchDb);
-  return items.map(item => searchDb[item]);
+  return items.map((item) => searchDb[item]);
 }
 
 function groupDb(data) {
