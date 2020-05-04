@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import $ from 'jquery';
 import viewer from '../../viewer';
 import template from './downloadtemplate';
@@ -78,7 +79,7 @@ const Downloader = function Downloader(layersObj) {
   }
 
   function renderSync(target, layerName) {
-    const id = 'o-downloader-refresh-' + layerName;
+    const id = `o-downloader-refresh-${layerName}`;
     const refresh = createButton({
       href: '#fa-refresh',
       cls: 'o-icon-fa-refresh',
