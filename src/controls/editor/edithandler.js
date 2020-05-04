@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-use-before-define */
 import Draw from 'ol/interaction/Draw';
 import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify';
@@ -88,7 +90,7 @@ function getFeaturesByIds(type, layer, ids) {
 }
 
 function getDefaultValues(attrs) {
-  return attrs.filter(attribute => attribute.name && attribute.defaultValue)
+  return attrs.filter((attribute) => attribute.name && attribute.defaultValue)
     .reduce((prev, curr) => {
       const previous = prev;
       previous[curr.name] = curr.defaultValue;
@@ -97,7 +99,7 @@ function getDefaultValues(attrs) {
 }
 
 function getSnapSources(layers) {
-  return layers.map(layer => viewer.getLayer(layer).getSource());
+  return layers.map((layer) => viewer.getLayer(layer).getSource());
 }
 
 function saveFeatures() {
@@ -326,6 +328,7 @@ function onDeleteSelected() {
   editSource = editLayers[currentLayer].getSource();
   if (features.getLength() === 1) {
     const feature = features.item(0);
+    // eslint-disable-next-line no-restricted-globals
     const r = confirm('Är du säker på att du vill ta bort det här objektet?');
     if (r === true) {
       saveFeature({
@@ -486,12 +489,12 @@ function addImageListener() {
 let mapOptions;
 function changeEventHandler(event) {
   const layers = mapOptions.layers;
-  const wPKT = layers.filter(l => l.name === 'webb_pkt')[0];
+  const wPKT = layers.filter((l) => l.name === 'webb_pkt')[0];
   const attr = wPKT.attributes;
-  const dropdownConnect = attr.filter(a => a.type === 'dropdownConnect')[0];
+  const dropdownConnect = attr.filter((a) => a.type === 'dropdownConnect')[0];
   const model = dropdownConnect.options;
   const value = event.target.value;
-  const obj = model.filter(o => o.name === value.trim())[0];
+  const obj = model.filter((o) => o.name === value.trim())[0];
   const con = obj.connect;
   const CATEGORYID = document.getElementById('input-CATEGORYID');
   CATEGORYID.value = con;
@@ -518,13 +521,13 @@ function editAttributes(feat) {
         const obj = {};
         $.extend(obj, attributeObject);
         // TODO: Stores initial value
-        if (objValueStore.filter(o => o.name === obj.name)[0] === undefined) {
+        if (objValueStore.filter((o) => o.name === obj.name)[0] === undefined) {
           obj.val = feature.get(obj.name) !== undefined ? feature.get(obj.name) : '';
           if (obj.val !== '') {
             objValueStore.push({ value: obj.val, name: obj.name });
           }
         } else {
-          obj.val = objValueStore.filter(o => o.name === obj.name)[0].value;
+          obj.val = objValueStore.filter((o) => o.name === obj.name)[0].value;
         }
         if ('constraint' in obj) {
           const constraintProps = obj.constraint.split(':');
