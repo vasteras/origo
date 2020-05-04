@@ -4,8 +4,6 @@ import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import DrawInteraction from 'ol/interaction/Draw';
 import Overlay from 'ol/Overlay';
-import Polygon from 'ol/geom/Polygon';
-import LineString from 'ol/geom/LineString';
 import viewer from '../viewer';
 import utils from '../utils';
 import Style from '../style';
@@ -114,6 +112,7 @@ function formatArea(polygon) {
 
   [].forEach.call(htmlElem.children, (element) => {
     if (element.tagName === 'SUP') {
+      // eslint-disable-next-line no-param-reassign
       element.textContent = String.fromCharCode(element.textContent.charCodeAt(0) + 128);
     }
   });
