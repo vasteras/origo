@@ -6,6 +6,7 @@ class NullExpected {
     const { Modify: opt } = options;
     this.Controller = new Controller(opt);
   }
+
   get modified() {
     return `${this.options.Modify.appUrl}#${this.ModifyState.params}`;
   }
@@ -15,14 +16,14 @@ class NullExpected {
     this.Controller.addModifyState(options);
   }
 
-  navToAppUrl() {
+  noSelection() {
     this.Controller.replaceConfig();
     this.ModifyState.params = this.Controller.params;
     console.log('NullExpected window open: ', this.modified);
     // window.open(this.ModifyState.modified);
   }
 
-  nullExpect() {
+  onSelection() {
     const { field } = this.options.Modify;
     this.selectedField = this.ModifyState.values[field];
     this.Controller.controlLayerName(this.ModifyState.layerName, this.selectedField);
@@ -34,9 +35,9 @@ class NullExpected {
 
   init() {
     if (this.ModifyState.mode === 'selection') {
-      this.nullExpect();
+      this.onSelection();
     } else if (this.ModifyState.mode === 'no-selection') {
-      this.navToAppUrl();
+      this.noSelection();
     }
   }
 }

@@ -2,6 +2,7 @@ class ErrorHandler {
   constructor(options) {
     this.options = options;
   }
+
   check(...params) {
     const { options } = this;
     params.forEach((param) => {

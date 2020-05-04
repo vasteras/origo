@@ -13,14 +13,10 @@ let modify;
 function goFullScreen() {
   const url = permalink.getPermalink();
   if (modify) {
-    // TODO: What do if feature is not selected ?!?, what should I pass.
     modify.setParams = url.split('#')[1];
     if (modify.isReady) {
       modify.init();
     }
-  } else {
-    console.log('window open: ', url);
-    // window.open(url);
   }
 }
 
@@ -35,11 +31,17 @@ function render(target) {
   });
 
   if (isEmbedded(mapTarget) && !notOnlyEmbedded) {
-    $(target).prepend(el);
+    $(target).append(el);
   } else if (!isEmbedded(mapTarget) && notOnlyEmbedded) {
-    $(target).prepend(el);
+    $(target).append(el);
   } else if (isEmbedded(mapTarget)) {
-    $(target).prepend(el);
+    const m = document.getElementById('o-map').getBoundingClientRect();
+    const z = document.querySelector('.ol-zoom').getBoundingClientRect();
+    if (Math.abs(z.top - m.top) > 100) {
+      $(target).append(el);
+    } else {
+      $(target).prepend(el);
+    }
   }
 }
 
@@ -66,7 +68,8 @@ function init(optOptions) {
     config,
     translate,
     field,
-    expect
+    expect,
+    cleaner
   } = options;
   try {
     modify = new Modify({
@@ -74,7 +77,8 @@ function init(optOptions) {
       field,
       config,
       translate,
-      expect
+      expect,
+      cleaner
     });
   } catch (error) {
     console.error(error);

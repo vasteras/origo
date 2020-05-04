@@ -18,7 +18,7 @@ class Modify {
     this.errorHandler = new ErrorHandler(options);
     this.errorHandler.check('appUrl', 'field', 'config', 'translate', 'expect');
     const {
-      appUrl, field, config, translate
+      appUrl, field, config, translate, cleaner, expect
     } = options;
     const ModifyOptions = {
       Modify: {
@@ -26,7 +26,8 @@ class Modify {
       }
     };
     this.NullExpected = new NullExpected(ModifyOptions);
-    this.Expected = new Expected(ModifyOptions);
+    const ExtendedModifyOptions = Object.assign(ModifyOptions, { cleaner, expect });
+    this.Expected = new Expected(ExtendedModifyOptions);
   }
 
   set setParams(params) {
@@ -46,6 +47,7 @@ class Modify {
 
   setSelectionResults() {
     this.selectedReslut = featureinfo.getSelectedResult();
+    this.selectedPin = featureinfo.getPin();
     if (this.selectedReslut) {
       const { layer: { values_: { name: layerName } }, feature: { values_: values } } = this.selectedReslut[0];
       this.layerName = layerName;
@@ -63,7 +65,23 @@ class Modify {
     });
   }
 
+  appendToParamas(add) {
+    const notMap = this.params.split('&map=');
+    const map = notMap[1];
+    notMap.concat(notMap, add).concat(notMap, map);
+  }
+
+  setPin() {
+    const { selectedPin: pin } = this;
+    if (pin) {
+      const coords = pin.getGeometry().getCoordinates();
+      const str = `&pin=${coords[0]},${coords[1]}`;
+      this.appendToParamas(str);
+    }
+  }
+
   init() {
+    this.setPin();
     this.initExpectedMode();
     const {
       mode, params, modified, selectedReslut, layerName, values, expectedMode

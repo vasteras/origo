@@ -29,6 +29,7 @@ class Translate {
   constructor(list) {
     this.list = list;
   }
+
   get getList() {
     return this.list;
   }
@@ -36,6 +37,7 @@ class Translate {
   set setList(li) {
     this.list = li;
   }
+
   /**
    * Takes a name and finds that item in the list.
    *
@@ -46,7 +48,7 @@ class Translate {
    * @param {*} c
    */
   values(c) {
-    return this.list.filter(o => o[c]);
+    return this.list.filter((o) => o[c]);
   }
 
 
