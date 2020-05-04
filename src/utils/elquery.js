@@ -1,15 +1,23 @@
 import $ from 'jquery';
 
+
+function arrToObj(arr, start) {
+  const obj = {};
+  let val = start;
+  arr.slice().reverse().forEach((curr) => {
+    val += `-${curr}`;
+    obj[curr] = val;
+  });
+  return obj;
+}
+
 export default function (targetObj, options) {
   const target = '.o-map';
   const prefix = options.breakPointsPrefix;
   const breakPoints = options.breakPoints;
   const breakNames = Object.getOwnPropertyNames(breakPoints);
   const breakCls = arrToObj(breakNames, prefix);
-  const breakClsNames = breakNames.map(breakSize => breakCls[breakSize]);
-
-  $(window).on('resize', onSizeChange);
-  onSizeChange();
+  const breakClsNames = breakNames.map((breakSize) => breakCls[breakSize]);
 
   function onSizeChange() {
     const mapSize = targetObj.getSize();
@@ -30,13 +38,6 @@ export default function (targetObj, options) {
     }
   }
 
-  function arrToObj(arr, start) {
-    const obj = {};
-    let val = start;
-    arr.slice().reverse().forEach((curr) => {
-      val += `-${curr}`;
-      obj[curr] = val;
-    });
-    return obj;
-  }
+  $(window).on('resize', onSizeChange);
+  onSizeChange();
 }

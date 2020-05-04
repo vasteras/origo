@@ -17,6 +17,7 @@ export default function getimageorientation(file, callback) {
       marker = view.getUint16(offset, false);
       offset += 2;
       if (marker === 0xFFE1) {
+        // eslint-disable-next-line no-cond-assign
         if (view.getUint32(offset += 2, false) !== 0x45786966) {
           return callback(-1);
         }
@@ -30,7 +31,7 @@ export default function getimageorientation(file, callback) {
             return callback(view.getUint16(offset + (i * 12) + 8, little));
           }
         }
-      } else if ((marker & 0xFF00) !== 0xFF00) {
+      } else if ((marker && 0xFF00) !== 0xFF00) {
         break;
       } else {
         offset += view.getUint16(offset, false);

@@ -12,7 +12,7 @@ export default function () {
       if (type) {
         return styleTypes[type];
       }
-      console.log(`${type} is not a default style`)
+      console.log(`${type} is not a default style`);
       return false;
     }
   };
