@@ -70,7 +70,7 @@ function getAGSIdentifyUrl(layer, coordinate) {
 function isTainted(pixel, layerFilter) {
   try {
     if (layerFilter) {
-      map.forEachLayerAtPixel(pixel, layer => layerFilter === layer);
+      map.forEachLayerAtPixel(pixel, (layer) => layerFilter === layer);
     }
 
     return false;
@@ -81,7 +81,7 @@ function isTainted(pixel, layerFilter) {
 }
 
 function layerAtPixel(pixel, matchLayer) {
-  map.forEachLayerAtPixel(pixel, layer => matchLayer === layer);
+  map.forEachLayerAtPixel(pixel, (layer) => matchLayer === layer);
 }
 
 function getGetFeatureInfoRequest(layer, coordinate) {
@@ -166,7 +166,7 @@ function getFeatureInfoRequests(evt) {
 function getFeaturesFromRemote(evt) {
   map = viewer.getMap();
   const requestResult = [];
-  const requestPromises = getFeatureInfoRequests(evt).map(request => request.fn.then((features) => {
+  const requestPromises = getFeatureInfoRequests(evt).map((request) => request.fn.then((features) => {
     const layer = viewer.getLayer(request.layer);
     if (features) {
       features.forEach((feature) => {
