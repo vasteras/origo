@@ -1,4 +1,4 @@
-export default obj => `<html>
+export default (obj) => `<html>
   <head>
     <link href="css/print.css" rel="stylesheet">
   </head>
