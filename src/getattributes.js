@@ -1,5 +1,5 @@
 import featureinfotemplates from './featureinfotemplates';
-import replacer from '../src/utils/replacer';
+import replacer from './utils/replacer';
 import geom from './geom';
 
 function createUrl(prefix, suffix, url) {
