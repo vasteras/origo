@@ -24,6 +24,7 @@ const downloadHandler = function downloadHandler() {
     }
 
     if (isAlert) {
+      // eslint-disable-next-line no-alert
       alert(error);
     } else {
       console.log(error);
