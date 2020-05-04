@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import $ from 'jquery';
 import viewer from '../../viewer';
 import dropDown from '../../dropdown';
