@@ -8,8 +8,8 @@ let shareButton;
 
 
 function createContent() {
-  return '<div class="o-share-link"><input type="text"></div>' +
-    '<i>Kopiera och klistra in länken för att dela kartan.</i>';
+  return '<div class="o-share-link"><input type="text"></div>'
+    + '<i>Kopiera och klistra in länken för att dela kartan.</i>';
 }
 
 function createLink() {
