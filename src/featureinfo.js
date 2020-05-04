@@ -9,7 +9,7 @@ import featurelayer from './featurelayer';
 import Style from './style';
 import StyleTypes from './style/styletypes';
 import getFeatureInfo from './getfeatureinfo';
-import replacer from '../src/utils/replacer';
+import replacer from './utils/replacer';
 
 const style = Style();
 const styleTypes = StyleTypes();
@@ -96,12 +96,16 @@ function getSelection() {
     selection.geometryType = selectionLayer.getFeatures()[0].getGeometry().getType();
     selection.coordinates = selectionLayer.getFeatures()[0].getGeometry().getCoordinates();
     selection.id = selectionLayer.getFeatures()[0].getId();
-    selection.type = selectionLayer.getSourceLayer().get('type');
 
-    if (selection.type === 'WFS') {
-      selection.id = selectionLayer.getFeatures()[0].getId();
-    } else {
-      selection.id = `${selectionLayer.getSourceLayer().get('name')}.${selectionLayer.getFeatures()[0].getId()}`;
+    try {
+      selection.type = selectionLayer.getSourceLayer().get('type');
+      if (selection.type === 'WFS') {
+        selection.id = selectionLayer.getFeatures()[0].getId();
+      } else {
+        selection.id = `${selectionLayer.getSourceLayer().get('name')}.${selectionLayer.getFeatures()[0].getId()}`;
+      }
+    } catch (error) {
+      console.warn('SelectionLayer has no source');
     }
   }
   return selection;
@@ -118,7 +122,7 @@ function getHitTolerance() {
 function identify(identifyItems, target, coordinate) {
   items = identifyItems;
   clear();
-  let content = items.map(i => i.content).join('');
+  let content = items.map((i) => i.content).join('');
   content = `<div id="o-identify"><div id="o-identify-carousel" class="owl-carousel owl-theme">${content}</div></div>`;
   switch (target) {
     case 'overlay':
