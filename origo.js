@@ -10,11 +10,18 @@ origo.map = {};
 origo.config = origoConfig;
 origo.controls = controls;
 
+let view;
+
 function init(config) {
   viewer.init(config.el, config.options);
   // Init controls
   controlInitialiser.init(config.options.controls);
+  view = viewer;
 }
+
+origo.getView = function getView() {
+  return view;
+};
 
 origo.map.init = function initMap(options, defaultOptions) {
   const config = defaultOptions ? $.extend(origo.config, defaultOptions) : origo.config;
