@@ -1,3 +1,5 @@
+/* eslint-disable no-eval */
+/* eslint-disable no-alert */
 import Point from 'ol/geom/Point';
 import Circle from 'ol/style/Circle';
 import Fill from 'ol/style/Fill';
@@ -9,7 +11,7 @@ import $ from 'jquery';
 import viewer from './viewer';
 import validateurl from './utils/validateurl';
 import stylefunctions from './style/stylefunctions';
-import replacer from '../src/utils/replacer';
+import replacer from './utils/replacer';
 import maputils from './maputils';
 
 let baseUrl;
@@ -164,8 +166,14 @@ function checkOptions(feature, scale, styleSettings, styleList, size) {
           const featAttr = matches[1];
           expr = s[j][0].filter.split(']')[1];
           const featMatch = first.get(featAttr);
-          expr = typeof featMatch === 'number' ? featMatch + expr : `"${featMatch}"${expr}`;
+          // expr = typeof featMatch === 'number' ? featMatch + expr : `"${featMatch}"${expr}`;
+          if (typeof featMatch === 'number') {
+            expr = featMatch + expr;
+          } else {
+            expr = `"${featMatch}"${expr}`;
+          }
         }
+        // TODO: FIXME!! Remove eval
         if (eval(expr)) {
           styleL = styleList[j];
           return styleL;
