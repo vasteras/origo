@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    <title>Anläggningskarta exempel</title>
+    <link rel="stylesheet" href="./webb/css/style.css">
+</head>
+<style>
+    #wrapper {
+        padding: 20px;
+        margin: 20px;
+        border: 1px solid black;
+    }
+
+    #facility {
+        width: 100%;
+        height: 50%;
+    }
+
+    code {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <div id="facility">
+            <h1>Anläggningskarta</h1>
+            <code>pageid: <pageid></pageid></code>
+            <br>
+            <br>
+            <div id="anlaggningskarta"></div>
+        </div>
+    </div>
+    <script src="js/origo.js"></script>
+    <script type="text/javascript">
+        /**
+        * Setup - Set dev url, Set production url, debug - displays the current url to the console.
+        * debug also fetches resources like index.json from the dev url specified in WebMap.
+        */
+        const dev = "http://localhost:9966/webb/js/webMap.js";
+        const prod = "http://kartor.vasteras.se/webb/js/webMap.js";
+        const debug = true;
+        const pageid = "4.3ff54ef414ba63027dc22fd";
+
+        const script = document.createElement('script');
+        script.src = dev;
+        const body = document.getElementsByTagName('body')[0];
+        body.append(script);
+
+        const pageids = document.getElementsByTagName('pageid');
+        Array.from(pageids).forEach(function (pid) {
+            pid.innerHTML = pageid;
+        });
+
+        setTimeout(() => {
+            try {
+                FacilityMap("anlaggningskarta", pageid, debug);
+            } catch (error) {
+                console.log(error);
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

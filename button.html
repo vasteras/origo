@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    <title>Redigeringskarta exempel</title>
+</head>
+<style>
+    #app-wrapper {
+        padding: 20px;
+        margin: 20px;
+        border: 1px solid black;
+    }
+
+    code {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="app-wrapper">
+        <h1>Redigeringskarta</h1>
+        <code>pageid: <pageid></pageid></code>
+        <br>
+        <br>
+        <code>pageid: </code><input id="pageid" type="text" name="pageid" style="width: 220px;">
+        <br>
+        <br>
+        <button id="redigeringskarta">Redigera</button>
+        <br>
+        <br>
+        <code>pageid: <pageid></pageid></code>
+        <br>
+        <br>
+        <button id="redigeringskartaNY">Skapa</button>
+    </div>
+    <script type="text/javascript">
+        /**
+         * Setup - Set dev url, Set production url, debug - displays the current url to the console.
+         */
+        const dev = "webb/js/webMap.js";
+        const prod = "http://kartor.vasteras.se/webb/js/webMap.js";
+        const debug = true;
+
+        const script = document.createElement('script');
+        script.src = dev; // <<<<<<<< SETUP 
+        const body = document.getElementsByTagName('body')[0];
+        body.append(script);
+
+
+        const getID = function (times) {
+            let t = times;
+            let res = "4.";
+            while (t > 0) {
+                res += Math.random().toString(36).substr(2, 9);
+                t -= 1;
+            }
+            return res;
+        }
+
+        let randomID = getID(3);
+        // let randomID = "";
+
+        const pageids = document.getElementsByTagName('pageid');
+        Array.from(pageids).forEach(function (pageid) {
+            pageid.innerHTML = randomID;
+        });
+        const pageid = document.getElementById('pageid');
+        const btn = document.getElementById('redigeringskarta');
+        btn.addEventListener('click', function () {
+            const { value } = pageid;
+            if (value === "") {
+                editMap(randomID, debug);
+            } else {
+                editMap(value, debug);
+            }
+
+        });
+        var btnNY = document.getElementById('redigeringskartaNY');
+        btnNY.addEventListener('click', function () {
+            editMap(randomID, debug);
+        });	
+    </script>
+</body>
+
+</html>

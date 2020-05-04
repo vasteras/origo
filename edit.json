@@ -188,6 +188,10 @@
                             "connect": 6
                         },
                         {
+                            "name": "Dagverksamhet inom funktionedsättning",
+                            "connect": 44
+                        },
+                        {
                             "name": "Familjecentrum",
                             "connect": 7
                         },
@@ -1890,7 +1894,7 @@
                             32,
                             32
                         ],
-                        "src": "data/png/Simhall - badhus.png"
+                        "src": "data/png/Simhall-badhus.png"
                     }
                 }
             ],
@@ -1926,7 +1930,7 @@
                             32,
                             32
                         ],
-                        "src": "data/png/Traffpunkt.png"
+                        "src": "data/png/Traffpunkter.png"
                     }
                 }
             ],

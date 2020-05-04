@@ -3,237 +3,250 @@
 		{
 			"name": "fullscreen",
 			"options": {
-                "notOnlyEmbedded": true,
-                "appUrl": "https://kartor.vasteras.se/sam-beta",
-                "config": "vas",
-                "translate": [{
-					"Förskola": "forskola",
-					"CATEGORYID": 11,
-					"layerName": "forskola"
-				},{ 
-					"Aktivitetsplan": "aktivitetsplan",
-					"CATEGORYID": 42,
-					"layerName": "aktivitetsplan"
-				},
-				{ 
-					"Badplats": "badplats",
-					"CATEGORYID": 1,
-					"layerName": "badplats"
-				},
-				{ 
-					"Bibliotek": "bibliotek",
-					"CATEGORYID": 2,
-					"layerName": "bibliotek"
-				},
-				{ 
-					"Boende för missbrukare": "boende for missbrukare",
-					"CATEGORYID": 3,
-					"layerName": "boende_for_missbrukare"
-				},
-				{ 
-					"Boende för psykiskt funktionsnedsatta": "boende för psykiskt funktionsnedsatta",
-					"CATEGORYID": 4,
-					"layerName": "boende_for_psykiskt_funktionsnedsatta"
-				},
-				{ 
-					"Cykelpumpar": "cykelpumpar",
-					"CATEGORYID": 5,
-					"layerName": "cykelpumpar"
-				},
-				{ 
-					"Dagverksamhet för personer med demenssjukdom": "dagverksamhet for personer med demenssjukdom",
-					"CATEGORYID": 6,
-					"layerName": "dagverksamhet_for_personer_med_demenssjukdom"
-				},
-				{ 
-					"Dagverksamhet inom funktionedsättning": "dagverksamhet inom funktionedsattning",
-					"CATEGORYID": 44,
-					"layerName": "dagverksamhet_inom_funktionedsattning"
-				},
-				{ 
-					"Familjecentrum": "familjecentrum",
-					"CATEGORYID": 7,
-					"layerName": "familjecentrum"
-				},
-				{ 
-					"Fotbollsplan": "fotbollsplan",
-					"CATEGORYID": 8,
-					"layerName": "fotbollsplan"
-				},
-				{ 
-					"Fritidsgård": "fritidsgard",
-					"CATEGORYID": 9,
-					"layerName": "fritidsgard"
-				},
-				{ 
-					"Fritidshem": "fritidshem",
-					"CATEGORYID": 10,
-					"layerName": "fritidshem"
-				},
-				{ 
-					"Förskola": "forskola",
-					"CATEGORYID": 11,
-					"layerName": "forskola"
-				},
-				{ 
-					"Förskoleklass": "forskoleklass",
-					"CATEGORYID": 12,
-					"layerName": "forskoleklass"
-				},
-				{ 
-					"Grundskola": "grundskola",
-					"CATEGORYID": 13,
-					"layerName": "grundskola"
-				},
-				{ 
-					"Grundsärskola": "grundsarskola",
-					"CATEGORYID": 14,
-					"layerName": "grundsarskola"
-				},
-				{ 
-					"Gruppbostad": "gruppbostad",
-					"CATEGORYID": 15,
-					"layerName": "gruppbostad"
-				},
-				{ 
-					"Gymnasieskola": "gymnasieskola",
-					"CATEGORYID": 16,
-					"layerName": "gymnasieskola"
-				},
-				{ 
-					"Gymnasiesärskola": "gymnasiesarskola",
-					"CATEGORYID": 17,
-					"layerName": "gymnasiesarskola"
-				},
-				{ 
-					"Hall-idrottsanläggning": "hall-idrottsanlaggning",
-					"CATEGORYID": 18,
-					"layerName": "hall-idrottsanlaggning"
-				},
-				{ 
-					"Högskola och yrkeshögskola": "hogskola och yrkeshogskola",
-					"CATEGORYID": 19,
-					"layerName": "hogskola_och_yrkeshogskola"
-				},
-				{ 
-					"Korttidsvistelse utanför det egna hemmet": "korttidsvistelse utanfor det egna hemmet",
-					"CATEGORYID": 20,
-					"layerName": "korttidsvistelse_utanfor_det_egna_hemmet"
-				},
-				{ 
-					"Kulturskolan": "kulturskolan",
-					"CATEGORYID": 21,
-					"layerName": "kulturskolan"
-				},
-				{ 
-					"Motionsspår": "motionsspar",
-					"CATEGORYID": 22,
-					"layerName": "motionsspar"
-				},
-				{ 
-					"Museum": "museum",
-					"CATEGORYID": 23,
-					"layerName": "museum"
-				},
-				{ 
-					"Mötesplats för anhöriga": "motesplats for anhoriga",
-					"CATEGORYID": 24,
-					"layerName": "motesplats_for_anhoriga"
-				},
-				{ 
-					"Mötesplats-omsorg": "Motesplats-omsorg",
-					"CATEGORYID": 25,
-					"layerName": "motesplats-omsorg"
-				},
-				{ 
-					"Park": "park",
-					"CATEGORYID": 26,
-					"layerName": "park"
-				},
-				{ 
-					"Pedagogisk omsorg": "pedagogisk omsorg",
-					"CATEGORYID": 27,
-					"layerName": "pedagogisk_omsorg"
-				},
-				{ 
-					"Servicebostad": "servicebostad",
-					"CATEGORYID": 28,
-					"layerName": "servicebostad"
-				},
-				{ 
-					"Sfi": "sfi",
-					"CATEGORYID": 29,
-					"layerName": "sfi"
-				},
-				{ 
-					"Simhall-badhus": "simhall-badhus",
-					"CATEGORYID": 30,
-					"layerName": "simhall-badhus"
-				},
-				{ 
-					"Träffpunkt": "traffpunkt",
-					"CATEGORYID": 31,
-					"layerName": "traffpunkt"
-				},
-				{ 
-					"Utegym": "utegym",
-					"CATEGORYID": 43,
-					"layerName": "utegym"
-				},
-				{ 
-					"Vuxenutbildning": "vuxenutbildning",
-					"CATEGORYID": 32,
-					"layerName": "vuxenutbildning"
-				},
-				{ 
-					"Västerås utvecklas": "vasterås utvecklas",
-					"CATEGORYID": 33,
-					"layerName": "vasterås_utvecklas"
-				},
-				{ 
-					"Äldreboende": "aldreboende",
-					"CATEGORYID": 34,
-					"layerName": "aldreboende"
-				},
-				{ 
-					"Ålderdomshem": "alderdomshem",
-					"CATEGORYID": 35,
-					"layerName": "alderdomshem"
-				},
-				{ 
-					"Öppen fritidsverksamhet": "oppen fritidsverksamhet",
-					"CATEGORYID": 36,
-					"layerName": "oppen_fritidsverksamhet"
-				},
-				{ 
-					"Öppen förskola": "oppen forskola",
-					"CATEGORYID": 37,
-					"layerName": "oppen_forskola"
-				},
-				{ 
-					"Övrigt": "ovrigt",
-					"CATEGORYID": 38,
-					"layerName": "ovrigt"
-				},
-				{ 
-					"Hundrastgård": "hundrastgard",
-					"CATEGORYID": 39,
-					"layerName": "hundrastgard"
-				},
-				{ 
-					"Offentlig konst": "offentlig konst",
-					"CATEGORYID": 40,
-					"layerName": "offentlig_konst"
-				},
-				{ 
-					"Offentlig toalett": "offentlig toalett",
-					"CATEGORYID": 41,
-					"layerName": "offentlig_toalett"
-				}],
+				"notOnlyEmbedded": true,
+				"appUrl": "https://kartor.vasteras.se/sam-beta",
+				"config": "vas",
+				"translate": [
+					{
+						"Förskola": "forskola",
+						"CATEGORYID": 11,
+						"layerName": "forskola"
+					},
+					{
+						"Aktivitetsplan": "aktivitetsplan",
+						"CATEGORYID": 42,
+						"layerName": "aktivitetsplan"
+					},
+					{
+						"Badplats": "badplats",
+						"CATEGORYID": 1,
+						"layerName": "badplats"
+					},
+					{
+						"Bibliotek": "bibliotek",
+						"CATEGORYID": 2,
+						"layerName": "bibliotek"
+					},
+					{
+						"Boende för missbrukare": "boende for missbrukare",
+						"CATEGORYID": 3,
+						"layerName": "boende_for_missbrukare"
+					},
+					{
+						"Boende för psykiskt funktionsnedsatta": "boende för psykiskt funktionsnedsatta",
+						"CATEGORYID": 4,
+						"layerName": "boende_for_psykiskt_funktionsnedsatta"
+					},
+					{
+						"Cykelpumpar": "cykelpumpar",
+						"CATEGORYID": 5,
+						"layerName": "cykelpumpar"
+					},
+					{
+						"Dagverksamhet för personer med demenssjukdom": "dagverksamhet for personer med demenssjukdom",
+						"CATEGORYID": 6,
+						"layerName": "dagverksamhet_for_personer_med_demenssjukdom"
+					},
+					{
+						"Dagverksamhet inom funktionedsättning": "dagverksamhet inom funktionedsattning",
+						"CATEGORYID": 44,
+						"layerName": "dagverksamhet_inom_funktionedsattning"
+					},
+					{
+						"Familjecentrum": "familjecentrum",
+						"CATEGORYID": 7,
+						"layerName": "familjecentrum"
+					},
+					{
+						"Fotbollsplan": "fotbollsplan",
+						"CATEGORYID": 8,
+						"layerName": "fotbollsplan"
+					},
+					{
+						"Fritidsgård": "fritidsgard",
+						"CATEGORYID": 9,
+						"layerName": "fritidsgard"
+					},
+					{
+						"Fritidshem": "fritidshem",
+						"CATEGORYID": 10,
+						"layerName": "fritidshem"
+					},
+					{
+						"Förskola": "forskola",
+						"CATEGORYID": 11,
+						"layerName": "forskola"
+					},
+					{
+						"Förskoleklass": "forskoleklass",
+						"CATEGORYID": 12,
+						"layerName": "forskoleklass"
+					},
+					{
+						"Grundskola": "grundskola",
+						"CATEGORYID": 13,
+						"layerName": "grundskola"
+					},
+					{
+						"Grundsärskola": "grundsarskola",
+						"CATEGORYID": 14,
+						"layerName": "grundsarskola"
+					},
+					{
+						"Gruppbostad": "gruppbostad",
+						"CATEGORYID": 15,
+						"layerName": "gruppbostad"
+					},
+					{
+						"Gymnasieskola": "gymnasieskola",
+						"CATEGORYID": 16,
+						"layerName": "gymnasieskola"
+					},
+					{
+						"Gymnasiesärskola": "gymnasiesarskola",
+						"CATEGORYID": 17,
+						"layerName": "gymnasiesarskola"
+					},
+					{
+						"Hall-idrottsanläggning": "hall-idrottsanlaggning",
+						"CATEGORYID": 18,
+						"layerName": "hall-idrottsanlaggning"
+					},
+					{
+						"Högskola och yrkeshögskola": "hogskola och yrkeshogskola",
+						"CATEGORYID": 19,
+						"layerName": "hogskola_och_yrkeshogskola"
+					},
+					{
+						"Korttidsvistelse utanför det egna hemmet": "korttidsvistelse utanfor det egna hemmet",
+						"CATEGORYID": 20,
+						"layerName": "korttidsvistelse_utanfor_det_egna_hemmet"
+					},
+					{
+						"Kulturskolan": "kulturskolan",
+						"CATEGORYID": 21,
+						"layerName": "kulturskolan"
+					},
+					{
+						"Motionsspår": "motionsspar",
+						"CATEGORYID": 22,
+						"layerName": "motionsspar"
+					},
+					{
+						"Museum": "museum",
+						"CATEGORYID": 23,
+						"layerName": "museum"
+					},
+					{
+						"Mötesplats för anhöriga": "motesplats for anhoriga",
+						"CATEGORYID": 24,
+						"layerName": "motesplats_for_anhoriga"
+					},
+					{
+						"Mötesplats-omsorg": "Motesplats-omsorg",
+						"CATEGORYID": 25,
+						"layerName": "motesplats-omsorg"
+					},
+					{
+						"Park": "park",
+						"CATEGORYID": 26,
+						"layerName": "park"
+					},
+					{
+						"Pedagogisk omsorg": "pedagogisk omsorg",
+						"CATEGORYID": 27,
+						"layerName": "pedagogisk_omsorg"
+					},
+					{
+						"Servicebostad": "servicebostad",
+						"CATEGORYID": 28,
+						"layerName": "servicebostad"
+					},
+					{
+						"Sfi": "sfi",
+						"CATEGORYID": 29,
+						"layerName": "sfi"
+					},
+					{
+						"Simhall-badhus": "simhall-badhus",
+						"CATEGORYID": 30,
+						"layerName": "simhall-badhus"
+					},
+					{
+						"Träffpunkt": "traffpunkt",
+						"CATEGORYID": 31,
+						"layerName": "traffpunkt"
+					},
+					{
+						"Utegym": "utegym",
+						"CATEGORYID": 43,
+						"layerName": "utegym"
+					},
+					{
+						"Vuxenutbildning": "vuxenutbildning",
+						"CATEGORYID": 32,
+						"layerName": "vuxenutbildning"
+					},
+					{
+						"Västerås utvecklas": "vasterås utvecklas",
+						"CATEGORYID": 33,
+						"layerName": "vasterås_utvecklas"
+					},
+					{
+						"Äldreboende": "aldreboende",
+						"CATEGORYID": 34,
+						"layerName": "aldreboende"
+					},
+					{
+						"Ålderdomshem": "alderdomshem",
+						"CATEGORYID": 35,
+						"layerName": "alderdomshem"
+					},
+					{
+						"Öppen fritidsverksamhet": "oppen fritidsverksamhet",
+						"CATEGORYID": 36,
+						"layerName": "oppen_fritidsverksamhet"
+					},
+					{
+						"Öppen förskola": "oppen forskola",
+						"CATEGORYID": 37,
+						"layerName": "oppen_forskola"
+					},
+					{
+						"Övrigt": "ovrigt",
+						"CATEGORYID": 38,
+						"layerName": "ovrigt"
+					},
+					{
+						"Hundrastgård": "hundrastgard",
+						"CATEGORYID": 39,
+						"layerName": "hundrastgard"
+					},
+					{
+						"Offentlig konst": "offentlig konst",
+						"CATEGORYID": 40,
+						"layerName": "offentlig_konst"
+					},
+					{
+						"Offentlig toalett": "offentlig toalett",
+						"CATEGORYID": 41,
+						"layerName": "offentlig_toalett"
+					}
+				],
 				"field": "CATEGORY",
-				"expect": ["PAGEID", "CATEGORYID"],
+				"expect": [
+					"PAGEID",
+					"CATEGORYID"
+				],
 				"cleaner": {
-					"defaults": ["layers", "center", "zoom", "map", "feature", "pin"],
+					"defaults": [
+						"layers",
+						"center",
+						"zoom",
+						"map",
+						"feature",
+						"pin"
+					],
 					"connectOn": "value",
 					"replace": "webb_pkt"
 				}
@@ -544,7 +557,6 @@
 				}
 			]
 		},
-		
 		{
 			"name": "vasteras",
 			"opacity": 0.15,
@@ -2000,7 +2012,7 @@
 							"width": 1
 						},
 						"fill": {
-							"color": "rgba(255,0,0,0.001)"
+							"color": "rgba(0,0,0,0.1)"
 						}
 					}
 				},
@@ -2036,7 +2048,7 @@
 							"width": 1
 						},
 						"fill": {
-							"color": "rgba(255,0,0,0.001)"
+							"color": "rgba(0,0,0,0.1)"
 						}
 					}
 				},
@@ -2072,7 +2084,7 @@
 							"width": 1
 						},
 						"fill": {
-							"color": "rgba(255,0,0,0.001)"
+							"color": "rgba(0,0,0,0.1)"
 						}
 					}
 				},
@@ -2108,7 +2120,7 @@
 							"width": 1
 						},
 						"fill": {
-							"color": "rgba(255,0,0,0.001)"
+							"color": "rgba(0,0,0,0.1)"
 						}
 					}
 				},
@@ -2144,7 +2156,7 @@
 							"width": 1
 						},
 						"fill": {
-							"color": "rgba(255,0,0,0.001)"
+							"color": "rgba(0,0,0,0.1)"
 						}
 					}
 				},
