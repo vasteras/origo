@@ -3,20 +3,8 @@ import GeoJSONFormat from 'ol/format/GeoJSON';
 import viewer from '../../viewer';
 import wfsTransaction from '../editor/wfstransaction';
 
-const wfs = {};
-wfs.request = function request(layer) {
-  const sourceOptions = viewer.getMapSource()[layer.get('sourceName')];
-  sourceOptions.featureType = layer.get('name').split('__').shift();
-  sourceOptions.geometryName = layer.get('geometryName');
-  sourceOptions.filter = layer.get('filter');
-  sourceOptions.projectionCode = viewer.getProjectionCode();
-  sourceOptions.extent = layer.get('extent');
-  sourceOptions.projectionCode = viewer.getProjectionCode();
-
-  const req = createRequest(sourceOptions);
-  return req;
-
-  function createRequest(options) {
+const wfs = {
+  createRequest: function createRequest(options) {
     const format = new GeoJSONFormat({
       geometryName: options.geometryName
     });
@@ -44,8 +32,20 @@ wfs.request = function request(layer) {
       url,
       cache: false
     })
-      .then(response => format.readFeatures(response));
+      .then((response) => format.readFeatures(response));
   }
+};
+wfs.request = function request(layer) {
+  const sourceOptions = viewer.getMapSource()[layer.get('sourceName')];
+  sourceOptions.featureType = layer.get('name').split('__').shift();
+  sourceOptions.geometryName = layer.get('geometryName');
+  sourceOptions.filter = layer.get('filter');
+  sourceOptions.projectionCode = viewer.getProjectionCode();
+  sourceOptions.extent = layer.get('extent');
+  sourceOptions.projectionCode = viewer.getProjectionCode();
+
+  const req = wfs.createRequest(sourceOptions);
+  return req;
 };
 
 wfs.transaction = function transaction(transObj, layerName) {

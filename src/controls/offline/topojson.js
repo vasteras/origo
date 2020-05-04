@@ -2,13 +2,8 @@ import $ from 'jquery';
 import TopoJSONFormat from 'ol/format/TopoJSON';
 import verifyFeatureIds from './verifyfeatureids';
 
-const topoJson = {};
-topoJson.request = function request(layer) {
-  const source = layer.get('sourceName');
-  const req = createRequest(source);
-  return req;
-
-  function createRequest(source) {
+const topoJson = {
+  createRequest: function createRequest(source) {
     const format = new TopoJSONFormat();
     const url = source;
 
@@ -22,6 +17,11 @@ topoJson.request = function request(layer) {
         return features;
       });
   }
+};
+topoJson.request = function request(layer) {
+  const source = layer.get('sourceName');
+  const req = topoJson.createRequest(source);
+  return req;
 };
 
 export default topoJson;

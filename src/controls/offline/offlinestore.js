@@ -1,3 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable consistent-return */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-use-before-define */
 import $ from 'jquery';
 import GeoJSONFormat from 'ol/format/GeoJSON';
 import localforage from 'localforage';
@@ -70,7 +74,7 @@ function offlineStore() {
   function onChangeOffline(e) {
     e.stopImmediatePropagation();
     if (e.action === 'download') {
-      onDownload(e.layerName)
+      onDownload(e.layerName);
     } else if (e.action === 'edits') {
       ondEdits(e.layerName, e.ids);
     } else if (e.action === 'remove') {
@@ -109,7 +113,7 @@ function offlineStore() {
   }
 
   function ondEdits(layerName, ids) {
-    const promises = ids.map(id => removeFromEditsStorage(id, layerName));
+    const promises = ids.map((id) => removeFromEditsStorage(id, layerName));
     return Promise.all(promises).then(() => true);
   }
 
@@ -182,7 +186,7 @@ function offlineStore() {
     const layer = viewer.getLayer(layerName);
     const geometryName = layer.get('geometryName');
     const features = [];
-    return storage[layerName].iterate((value, key, index) => {
+    return storage[layerName].iterate((value) => {
       const storedFeature = format.readFeature(value);
       const feature = restoreGeometryName(storedFeature, geometryName);
       features.push(feature);
@@ -192,7 +196,7 @@ function offlineStore() {
 
   function getEditsItems(layerName) {
     const items = [];
-    return editsStorage[layerName].iterate((value, key, index) => {
+    return editsStorage[layerName].iterate((value, key) => {
       const obj = {};
       obj[key] = value;
       items.push(obj);
