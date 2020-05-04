@@ -74,5 +74,5 @@ sourceType.WFS = function wfsSourceType(id, layer, serverUrl) {
     type: 'POST',
     dataType: 'json'
   })
-    .then(response => format.readFeatures(response));
+    .then((response) => format.readFeatures(response));
 };
