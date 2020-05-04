@@ -95,7 +95,7 @@ export default function editsStore() {
 
   function removeEdit(e) {
     if (e.feature.length) {
-      e.feature.forEach(feature => removeFeature(e.action, feature, e.layerName));
+      e.feature.forEach((feature) => removeFeature(e.action, feature, e.layerName));
     }
     if (hasEdits() === false) {
       dispatcher.emitEditsChange(0);
