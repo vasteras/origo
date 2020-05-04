@@ -56,7 +56,7 @@ const layerCreator = function layerCreator(optOptions) {
 
 function groupLayer(options) {
   if (Object.prototype.hasOwnProperty.call(options, 'layers')) {
-    const layers = options.layers.map(layer => layerCreator(layer));
+    const layers = options.layers.map((layer) => layerCreator(layer));
 
     const layerOptions = {};
     layerOptions.layers = layers;
