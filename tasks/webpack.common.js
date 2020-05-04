@@ -7,13 +7,26 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          cache: true,
+          fix: true,
+          emitError: true,
+          emitWarning: false,
+          configFile: '.eslintrc.json'
+        }
+      },
+      {
         test: /\.(js)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           cacheDirectory: false,
           presets: [
-            ['env', {
+            ['@babel/preset-env', {
               targets: {
                 browsers: ['ie >= 11']
               },
