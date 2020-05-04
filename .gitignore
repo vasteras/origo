@@ -1,4 +1,4 @@
-build
+build/*
 dist
 css/style.css
 node_modules
