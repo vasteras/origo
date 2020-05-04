@@ -93,10 +93,10 @@ function loadMap() {
     target: 'o-map',
     controls: [],
     view: new View({
-      extent: settings.extent || undefined,
-      projection: settings.projection || undefined,
+      extent: settings.extent || [],
+      projection: settings.projection || '',
       center: settings.center,
-      resolutions: settings.resolutions || undefined,
+      resolutions: settings.resolutions || [],
       zoom: settings.zoom,
       enableRotation: settings.enableRotation
     })
@@ -217,21 +217,21 @@ function getLayers() {
 }
 
 function getLayersByProperty(key, val, byName) {
-  const layers = map.getLayers().getArray().filter(layer => layer.get(key) && layer.get(key) === val);
+  const layers = map.getLayers().getArray().filter((layer) => layer.get(key) && layer.get(key) === val);
 
   if (byName) {
-    return layers.map(layer => layer.get('name'));
+    return layers.map((layer) => layer.get('name'));
   }
   return layers;
 }
 
 function getLayer(layername) {
-  const layer = $.grep(settings.layers, obj => obj.get('name') === layername);
+  const layer = $.grep(settings.layers, (obj) => obj.get('name') === layername);
   return layer[0];
 }
 
 function getQueryableLayers() {
-  const queryableLayers = settings.layers.filter(layer => layer.get('queryable') && layer.getVisible());
+  const queryableLayers = settings.layers.filter((layer) => layer.get('queryable') && layer.getVisible());
   return queryableLayers;
 }
 
@@ -249,7 +249,7 @@ function getSearchableLayers(searchableDefault) {
 }
 
 function getGroup(group) {
-  return settings.layers.filter(obj => obj.get('group') === group);
+  return settings.layers.filter((obj) => obj.get('group') === group);
 }
 
 function getSubgroups() {
@@ -278,7 +278,7 @@ function getSubgroups() {
 function getGroups(opt) {
   if (opt === 'top') {
     return settings.groups;
-  } else if (opt === 'sub') {
+  } if (opt === 'sub') {
     return getSubgroups();
   }
   return settings.groups.concat(getSubgroups());
@@ -299,7 +299,7 @@ function getMapOptions() {
   return mapOptions;
 }
 function getControlNames() {
-  return settings.controls.map(obj => obj.name);
+  return settings.controls.map((obj) => obj.name);
 }
 
 function getTarget() {
@@ -518,13 +518,15 @@ function init(el, options) {
     });
     map.handleMapBrowserEvent(new MapBrowserPointerEvent(click, map, singleClickEvent));
     const clickedPixels = featureinfo.getPixel();
+    const sl = featureinfo.getSelectionLayer();
     if (pixel[0] !== clickedPixels[0] || pixel[1] !== clickedPixels[1]) {
-      const sl = featureinfo.getSelectionLayer();
       sl.set('visible', false);
       setTimeout(() => {
         sl.set('visible', true);
         makeClick2(pixel);
       }, 300);
+    } else {
+      sl.set('visible', true);
     }
   };
   // TODO: Make this into a module....
@@ -543,6 +545,7 @@ function init(el, options) {
           layer.setSource(tmp);
         } else {
           tmp = layer.getSource().source.updateQuery(name, qf);
+          // eslint-disable-next-line no-param-reassign
           layer.getSource().source = tmp;
         }
 
@@ -563,14 +566,15 @@ function init(el, options) {
             }
             if (coords.length === 1) {
               const coord = coords[0];
-              // makeClick(coords);
               map.getView().animate({
                 center: coord,
                 zoom: animationParameters.zoom,
                 duration: animationParameters.duration
               }, () => {
-                makeClick(coords);
-                dispatcher.emitToggleEdit('attribute');
+                setTimeout(() => {
+                  makeClick(coords);
+                  dispatcher.emitToggleEdit('attribute');
+                }, 1000);
               });
             } else if (coords.length > 1) {
               const poly = new Polygon([coords]);
@@ -598,6 +602,7 @@ function init(el, options) {
           layer.setSource(tmp);
         } else {
           tmp = layer.getSource().source.updateQuery(name, qf);
+          // eslint-disable-next-line no-param-reassign
           layer.getSource().source = tmp;
           layer.set('title', titles[pid - 1]);
         }
