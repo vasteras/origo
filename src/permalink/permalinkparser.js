@@ -37,7 +37,7 @@ export default {
     return parseInt(zoomStr, 10);
   },
   center(centerStr) {
-    const center = centerStr.split(',').map(coord => parseInt(coord, 10));
+    const center = centerStr.split(',').map((coord) => parseInt(coord, 10));
     return center;
   },
   selection(selectionStr) {

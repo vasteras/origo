@@ -26,7 +26,7 @@ permalinkStore.getState = function getState() {
   const view = viewer.getMap().getView();
   const layers = viewer.getLayers();
   state.layers = getSaveLayers(layers);
-  state.center = view.getCenter().map(coord => Math.round(coord)).join();
+  state.center = view.getCenter().map((coord) => Math.round(coord)).join();
   state.zoom = view.getZoom().toString();
   const urlParams = viewer.getUrlParams();
   const { attribute, filter, value } = urlParams;
@@ -41,7 +41,7 @@ permalinkStore.getState = function getState() {
   }
 
   if (getPin()) {
-    state.pin = getPin().getGeometry().getCoordinates().map(coord => Math.round(coord))
+    state.pin = getPin().getGeometry().getCoordinates().map((coord) => Math.round(coord))
       .join();
   }
 

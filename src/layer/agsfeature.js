@@ -7,7 +7,7 @@ import viewer from '../viewer';
 import vector from './vector';
 
 function serialize(params) {
-  return Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+  return Object.keys(params).map((key) => `${key}=${params[key]}`).join('&');
 }
 
 function serializeGeometry(extent, wkid) {
@@ -63,14 +63,14 @@ function createESRIUrl(options, extent, queryFilter) {
 }
 
 function loadData(url, projection, that) {
-  fetch(url).then(response => response.json()).then((data) => {
+  fetch(url).then((response) => response.json()).then((data) => {
     const features = new EsriJSON().readFeatures(data, {
       featureProjection: projection
     });
     if (features.length > 0) {
       that.addFeatures(features);
     }
-  }).catch(error => console.warn(error));
+  }).catch((error) => console.warn(error));
 }
 const filters = [];
 function createSource(options) {
@@ -94,7 +94,7 @@ function createSource(options) {
     loader(extent, resolution, projection) {
       const that = this;
       let q;
-      const getFilter = filters.filter(f => f.name === name)[0] || '';
+      const getFilter = filters.filter((f) => f.name === name)[0] || '';
       if (getFilter !== '') {
         q = `${getFilter.filter} AND ${query}`;
       } else {

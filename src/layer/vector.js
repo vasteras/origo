@@ -54,7 +54,7 @@ const vector = function vector(opt, src) {
               options.source.setDistance(clusterDistance);
             }
           }
-          map.getLayers().forEach(layer => layer.getSource().refresh());
+          map.getLayers().forEach((layer) => layer.getSource().refresh());
         });
       });
       break;
