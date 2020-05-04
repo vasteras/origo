@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import EsriJSON from 'ol/format/EsriJSON';
 import $ from 'jquery';
 import viewer from '../../viewer';
@@ -24,10 +25,10 @@ function writeAgsTransaction(features, options) {
   const data = {};
 
   if (options.type === 'delete') {
-    const objectIds = features.map(feature => feature.getId());
+    const objectIds = features.map((feature) => feature.getId());
     data.objectIds = objectIds.join(',');
   } else {
-    const agsFeatures = features.map(feature => format.writeFeature(feature, {
+    const agsFeatures = features.map((feature) => format.writeFeature(feature, {
       featureProjection: options.projection
     }));
     data.features = `[${agsFeatures}]`;
