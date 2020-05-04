@@ -60,7 +60,7 @@ const mapLoader = function mapLoader(mapOptions, config) {
 
       return $.when(loadSvgSprites(baseUrl, config))
         .then(() => map);
-    } else if (typeof (mapOptions) === 'string') {
+    } if (typeof (mapOptions) === 'string') {
       if (isUrl(mapOptions)) {
         urlParams = permalink.parsePermalink(mapOptions);
         url = mapOptions.split('#')[0];
@@ -105,10 +105,10 @@ const mapLoader = function mapLoader(mapOptions, config) {
             validJSON = true;
             return map;
           })
-          .catch(function(error) {
-            console.error("validJSON: ", validJSON);
-          })
-        );
+          .catch((error) => {
+            console.log(url);
+            console.error('validJSON: ', validJSON, 'error: ', error.statusText);
+          }));
     }
     return null;
   }
