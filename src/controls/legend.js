@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 import $ from 'jquery';
 import viewer from '../viewer';
 import modal from '../modal';
@@ -551,7 +553,7 @@ function showAbstract($abstractButton) {
   if ($item.hasClass('o-legend-header')) {
     const groups = viewer.getGroups();
 
-    const group = $.grep(groups, obj => obj.name === layername);
+    const group = $.grep(groups, (obj) => obj.name === layername);
 
     abstract.title = group[0].title;
     abstract.content = group[0].abstract;
