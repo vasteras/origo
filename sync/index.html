@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Sync</title>
+</head>
+<body>
+    <script>
+        async function get(url, options) {
+            try {
+                const res = await fetch(url, options)
+                return await res.json();
+            } catch (error) {
+                console.error('failed to get', error);
+            }
+        };
+
+        async function init() {
+            const options = {
+                query: {
+                    url:"https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/0/query?f=json&outFields=objectid,pageid,deleted",
+                    opt: {
+                        method: 'GET',
+                        redirect: 'follow'
+                    }
+                }
+            }
+            const res = await get(options.query.url, options.query.opt);
+            const { features } = res;
+            const pageids = [];
+            features.map((feature) => {
+                const { attributes: { PAGEID, DELETED }} = feature;
+                if (PAGEID && DELETED === 0) {
+                    pageids.push({ site: `https://www.vasteras.se/${PAGEID}.html`, pageid: PAGEID, deleted: DELETED });
+                }
+            });
+            console.log('total features; ', features.length, 'pageids: ', pageids.length);
+            pageids.forEach((obj) => {
+                const { site, pageid } = obj;
+                const defaults = {
+                    method: 'GET',
+                    redirect: 'follow'
+                };
+                var myHeaders = new Headers();
+
+                var requestOptions = {
+                    method: 'GET',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                fetch('https://localhost:1337/' + site, requestOptions)
+                    .then((response) => {
+                        const { status } = response;
+                        return { status, obj};
+                    })
+                    .then((result) => {
+                        const { status, obj: { site }} = result;
+                        if(status > 199 && status < 300) {
+                            console.log('Site is up: ', site, 'status: ', status);
+                        } else if (status > 399 && status < 500) {
+                            console.error('site is down', site, 'status: ', status);
+                            features.map((feature) => {
+                                const { attributes: { PAGEID }} = feature;
+                                const { pageid: objID, deleted: disabled } = obj;
+                                if(PAGEID === objID && disabled === 0) {
+                                    feature['attributes']['DELETED'] = 1;
+                                    const myHeaders = new Headers();
+                                    myHeaders.append("Accept", "*/*");
+                                    myHeaders.append("Accept-Language", "en-US,en;q=0.5");
+                                    myHeaders.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                                    myHeaders.append("X-Requested-With", "XMLHttpRequest");
+                                    myHeaders.append("Origin", "https://kartor.vasteras.se");
+                                    myHeaders.append("Connection", "keep-alive");
+                                    myHeaders.append("Content-Type", "text/plain");
+
+                                    const fjson = JSON.stringify(feature['attributes']);
+                                    const raw = `features=[{\"attributes\":${fjson}}]&f=json`
+                                    console.warn('start update feature: ', raw);
+                                    var requestOptions = {
+                                        method: 'POST',
+                                        headers: myHeaders,
+                                        body: raw,
+                                        redirect: 'follow'
+                                    };
+
+                                    fetch('https://localhost:1337/' + "https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/0/updateFeatures", requestOptions)
+                                        .then(response => response.json())
+                                        .then((result) => {
+                                            const { error } = result;
+                                            if(error) {
+                                                const { error: { code, message, details }} = result;
+                                                throw new Error(code, message, detals);
+                                            } else {
+                                                const { updateResults } = result;
+                                                updateResults.forEach(function(re)  {
+                                                    console.warn('successfully updated: ', JSON.stringify(re));
+                                                })
+                                            }
+                                        })
+                                        .catch(error => console.error('Failed to update with ags.', error));
+                                } 
+                            });
+                        }
+                    })
+                    .catch(error => console.log('error', error));
+            });
+        }
+        init();
+
+        // TODO: Create UI, start btn with progressbar, Mail a .log file to daniel.rasmussen@vasteras.se. Schedule every day on kartserver ... 
+    </script>
+</body>
+</html>

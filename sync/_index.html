@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Sync</title>
+</head>
+<body>
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                const res = this.responseText;
+                const obj = JSON.parse(res);
+                const features = obj.features;
+                features.forEach(function(feature) {
+                    var attr = feature.attributes;
+                    if(attr["PAGEID"]) {
+                        var pageid = attr["PAGEID"]; 
+                        var url = 'https://www.vasteras.se/' + pageid + ".html";
+                        setTimeout(() => {
+                            try {
+                                const xhr2 = new XMLHttpRequest();
+                                xhr2.withCredentials = true;
+                                xhr2.addEventListener("readystatechange", function () {
+                                    setTimeout(() => {
+                                        if (this.readyState === 4) {
+                                            if (this.status !== 200 ) {
+                                                // console.log('Found: ', url, feature);
+                                                if (feature.attributes["DELETED"] === 0) {
+                                                    feature.attributes["DELETED"] = 1;
+                                                    const data = `features=[{${JSON.stringify(feature)}}]&f=json`;
+                                                    setTimeout(() => {
+                                                        try {
+                                                            const xhr3 = new XMLHttpRequest();
+                                                            xhr3.withCredentials = true;
+
+                                                            xhr3.addEventListener("readystatechange", function () {
+                                                                if (this.readyState === 4) {
+                                                                    if (this.status === 200) {
+                                                                        console.log('status 200 OK!');
+                                                                        console.log(this.responseText);
+                                                                        console.log('Marked as deleted, ', url);
+                                                                    }
+                                                                }
+                                                            });
+
+                                                            xhr3.open("POST", "https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/0/updateFeatures");
+                                                            xhr3.setRequestHeader("Accept", "*/*");
+                                                            xhr3.setRequestHeader("Accept-Language", "en-US,en;q=0.5");
+                                                            xhr3.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                                                            xhr3.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                                                            xhr3.setRequestHeader("Content-Type", "text/plain");
+                                                            xhr3.send(data);
+                                                        } catch (error) {
+                                                            console.log(error);
+                                                        }
+                                                    }, 20000);
+                                                } 
+                                            }
+                                            
+                                        }
+                                    }, 10000);
+                                });
+                                xhr2.open("GET", url);
+                                xhr2.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                                xhr2.send();
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }, 10000);
+                    }
+                });
+            }
+        });
+        // &resultRecordCount=1
+        xhr.open("GET", "https://kartor.vasteras.se/arcgis/rest/services/ext/webbobjekt_dyn/FeatureServer/0/query?f=json&outFields=pageid,deleted");
+        xhr.send();
+        // TODO: Add genederate token with credentials as admin.
+
+        // xhr.setRequestHeader("Authorization", "Bearer  kHCVct7b-ZLlxG3aDVRGeoGoYShjBpYXJr9Vek-dAk1zNRaFHHU1PxMdNWAR4OeGbjq333kD1K9x1CNGT0xRCA..");
+
+    </script>
+</body>
+</html>
