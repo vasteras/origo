@@ -1,5 +1,5 @@
 @import 'no-map.scss';
-// @import 'background-grid.scss';
+@import 'background-grid.scss';
 @import 'variables';
 @import 'ui/ui';
 .o-map {
@@ -42,6 +42,7 @@
   @import 'featureinfo.scss';
   @import 'infowindow.scss';
   @import 'ui/validate.scss';
+  @import 'o-scale.scss';
   @import 'scalepicker.scss';
   @import 'embedded-overlay.scss';
 }

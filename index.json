@@ -37,7 +37,11 @@
       }
     },
     {
-      "name": "legend"
+      "name": "legend",
+      "options": {
+        "labelOpacitySlider": "Opacity",
+        "useGroupIndication" : true
+      }
     },
     {
       "name": "position",
@@ -57,7 +61,7 @@
     "footer": {
       "img": "img/png/logo.png",
       "url": "https://github.com/origo-map/origo",
-      "urlText": "Origo"
+      "text": "Origo"
     },
     "mapGrid": {
       "visible": true
@@ -109,7 +113,7 @@
     0.5972
   ],
   "featureinfoOptions": {
-    "infowindow": "infowindow"
+    "infowindow": "overlay"
   },
   "source": {
     "local": {
